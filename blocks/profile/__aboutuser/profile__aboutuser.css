@@ -1,4 +1,5 @@
 .profile__aboutuser {
+  max-width: 500px;
   margin: 0;
   padding-top: 9px;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
@@ -6,6 +7,9 @@
   color: #FFFFFF;
   font-size: 18px;
   line-height: 1.21;
-  grid-column: 1/-1;
+  grid-column-start: 1;
   grid-row-start: 2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
