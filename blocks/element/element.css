@@ -1,0 +1,9 @@
+.element {
+  background-color: #FFF;
+  max-width: 282px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
