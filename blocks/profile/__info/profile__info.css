@@ -1,0 +1,8 @@
+.profile__info {
+  padding:0 18px 0 30px;
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  grid-column-gap: 19px;
+  grid-template-rows: repeat(2, max-content);
+  justify-items: start;
+}

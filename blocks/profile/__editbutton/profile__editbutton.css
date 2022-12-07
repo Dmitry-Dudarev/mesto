@@ -1,0 +1,8 @@
+.profile__editbutton {
+  border: 0;
+  padding: 0 0 2px 0;
+  background-color: #000;
+  align-self: end;
+  grid-column-start: 2;
+  grid-row-start: 1;
+}

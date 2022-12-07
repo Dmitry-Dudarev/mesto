@@ -1,0 +1,11 @@
+.profile__aboutuser {
+  margin: 0;
+  padding-top: 9px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  color: #FFFFFF;
+  font-size: 18px;
+  line-height: 1.21;
+  grid-column: 1/-1;
+  grid-row-start: 2;
+}
