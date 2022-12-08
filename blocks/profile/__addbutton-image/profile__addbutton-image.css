@@ -1,0 +1,13 @@
+.profile__addbutton-image {
+  margin: 0;
+  padding: 0;
+  align-self: center;
+  justify-self: center;
+  padding-top: 5px;
+}
+
+@media (max-width: 465px) {
+  .profile__addbutton-image {
+    max-width: 16px;
+  }
+}

@@ -3,3 +3,9 @@
   flex-direction: column;
   align-items: stretch;
 }
+
+@media (max-width: 465px) {
+  .content {
+    padding: 0 19px;
+  }
+}

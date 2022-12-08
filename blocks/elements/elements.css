@@ -6,3 +6,9 @@
   grid-row-gap: 20px;
   align-items: center;
 }
+
+@media (max-width: 465px) {
+  .elements {
+    padding-bottom: 46px;
+  }
+}
