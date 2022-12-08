@@ -13,3 +13,10 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+@media (max-width: 465px) {
+  .profile__aboutuser {
+    padding-top: 7px;
+    font-size: 14px;
+  }
+}

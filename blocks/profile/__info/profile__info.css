@@ -1,8 +1,20 @@
 .profile__info {
   padding-left: 30px;
   display: grid;
-  grid-template-columns: repeat(2, max-content);
-  grid-column-gap: 19px;
+  grid-template-columns: max-content;
   grid-template-rows: repeat(2, max-content);
   justify-items: start;
+}
+
+@media (max-width: 1060px) {
+  .profile__info {
+    padding: 30px 0 36px;
+    justify-items: center;
+  }
+}
+
+@media (max-width: 465px) {
+  .profile__info {
+    padding: 27px 0 32px;
+  }
 }

@@ -3,6 +3,23 @@
   padding: 0 0 2px 0;
   background-color: #000;
   align-self: end;
-  grid-column-start: 2;
+  grid-column-start: 1;
   grid-row-start: 1;
+  justify-self: flex-end;
+  translate: 43px;
+}
+
+@media (max-width: 1060px) {
+  .profile__editbutton {
+    grid-column-start: 1;
+    grid-row-start: 1;
+    justify-self: flex-end;
+    translate: 42px;
+  }
+}
+
+@media (max-width: 465px) {
+  .profile__editbutton {
+    translate: 28px;
+  }
 }

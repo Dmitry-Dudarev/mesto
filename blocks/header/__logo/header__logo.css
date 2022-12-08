@@ -2,3 +2,10 @@
   width: auto;
   padding-bottom: 40px;
 }
+
+@media (max-width: 465px) {
+  .header__logo {
+    max-width: 32.5%;
+    padding:0 0 31px 27px; 
+  }
+}

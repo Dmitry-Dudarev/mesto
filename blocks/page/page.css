@@ -3,3 +3,33 @@
   background-color: #000;
   padding: 45px 200px 60px;
 }
+
+@media (max-width: 1100px) {
+  .page {
+    padding: 45px 190px 60px;
+  }
+}
+
+@media (max-width: 960px) {
+  .page {
+    padding: 45px 150px 60px;
+  }
+}
+
+@media (max-width: 880px) {
+  .page {
+    padding: 45px 90px 60px;
+  }
+}
+
+@media (max-width: 760px) {
+  .page {
+    padding: 45px 30px 60px;
+  }
+}
+
+@media (max-width: 465px) {
+  .page {
+    padding: 28px 0 36px;
+  }
+}
