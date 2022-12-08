@@ -3,6 +3,16 @@
   margin: 30px 20px;
 }
 
+.element__reaction:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+/* .element__reaction:active {
+  opacity: 1;
+  fill: black;
+} */
+
 @media (max-width: 465px) {
   .element__reaction {
     margin: 30px 20px 29px 20px;

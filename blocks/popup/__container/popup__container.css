@@ -12,4 +12,13 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (max-width: 550px) {
+  .popup__container {
+    padding: 26px 22px 25px;
+    max-width: 282px;
+    min-height: 322px;
+  }
 }

@@ -9,6 +9,11 @@
   translate: 43px;
 }
 
+.profile__editbutton:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
 @media (max-width: 1060px) {
   .profile__editbutton {
     grid-column-start: 1;

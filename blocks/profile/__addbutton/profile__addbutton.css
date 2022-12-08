@@ -9,6 +9,11 @@
   background-color: #000;
 }
 
+.profile__addbutton:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
 @media (max-width: 1150px) {
   .profile__addbutton {
     width: 100%;
