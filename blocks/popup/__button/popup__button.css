@@ -1,0 +1,6 @@
+.popup__button {
+  border: none;
+  width: 100%;
+  min-height: 50px;
+  background-color: #000;
+}
