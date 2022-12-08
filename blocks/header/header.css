@@ -2,4 +2,6 @@
   margin: 0 auto;
   border-bottom: 1px solid #545454;
   display: flex;
+  min-width: 320px;
+  max-width: 880px;
 }

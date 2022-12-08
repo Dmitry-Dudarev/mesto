@@ -12,3 +12,9 @@
     padding-bottom: 52px;
   }
 }
+
+@media (max-width: 319px) {
+  .elements {
+    grid-template-columns: repeat(auto-fit, minmax(90%, 1fr));
+  }
+}
