@@ -2,3 +2,9 @@
   min-width: 22px;
   margin: 30px 20px;
 }
+
+@media (max-width: 465px) {
+  .element__reaction {
+    margin: 30px 20px 29px 20px;
+  }
+}
