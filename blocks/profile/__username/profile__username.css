@@ -13,15 +13,16 @@
   grid-row-start: 1;
 }
 
-/* @media (max-width: 1200px) {
+@media (max-width: 1200px) {
   .profile__username {
-    max-width: 60%;
-    font-size: 35px;
+    max-width: 400px;
+    font-size: 38px;
   }
-} */
+}
 
 @media (max-width: 465px) {
   .profile__username {
+    max-width: 280px;
     font-size: 27px;
     line-height: 1.2104;
   }

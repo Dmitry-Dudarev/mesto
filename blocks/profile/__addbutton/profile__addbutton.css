@@ -9,7 +9,7 @@
   background-color: #000;
 }
 
-@media (max-width: 1060px) {
+@media (max-width: 1150px) {
   .profile__addbutton {
     width: 100%;
     justify-self: center;
