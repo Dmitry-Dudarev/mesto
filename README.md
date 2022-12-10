@@ -1,17 +1,40 @@
 # Проект: Место
+*Проектная работа в рамках прохождения обучения на курсе "Яндекс.Практикум"*
 
-### Обзор
+## Верстка проекта позволяет сделать страницу более адаптивной. Используются элементарные функции на JavaScript для редактирования данных.
 
-* Figma
-* Картинки
+* Изображения, текст, данные о цвете и шрифт взяты из проекта на базе Figma.
+* Часть изображений взята с сайта https://unsplash.com 
 
-**Figma**
+## JavaScript
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+*Реализована кнопка, нажатие на которую позволяет вызвать форму редактирования данных пользователя. 
 
-**Картинки**
+  ```JavaScript
+      .profileEditButton.addEventListener('click', (event) => {
+  	event.preventDefault();
+  	editPopup.classList.add('popup_opened');
+  });
+  ```
+*Введенные в форму данные сохраняются на странице нажатием на соответствующую кнопку, заменяя собой предществующую информацию.
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
+  ```JavaScript
+      savePopupButton.addEventListener('click', (event) => {
+  	event.preventDefault();
+  	userName.textContent = editUserName.value;
+  	aboutUser.textContent = editUserJob.value;
+  	editPopup.classList.remove('popup_opened');
+  });
+  ```
+*Реализована кнопка закрытия формы редактирования без внесения изменений в данные.
+  ```JavaScript
+      closePopupButton.addEventListener('click', (event) => {
+  	event.preventDefault();
+  	editUserName.value = userName.textContent;
+  	editUserJob.value = aboutUser.textContent;
+  	editPopup.classList.remove('popup_opened');
+  });
+  ```
 
-Удачи!
+Ссылка на проект:
+  https://dmitry-dudarev.github.io/russian-travel/
