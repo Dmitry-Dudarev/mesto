@@ -10,6 +10,7 @@
   <meta name="author" content="Дмитрий Дударев">
   <title>MESTO</title>
   <link rel="stylesheet" href="pages/index.css">
+  <script src="script/index.js" defer></script>
 </head>
 
 <body class="page">
@@ -20,7 +21,7 @@
     <section class="profile">
       <img class="profile__avatar" src="images/profile__avatar.jpg" alt="аватар">
       <div class="profile__info">
-        <p class="profile__username">Жак-Ив Кусто</p>
+        <h1 class="profile__username">Жак-Ив Кусто</h1>
         <button class="profile__editbutton">
           <img class="profile__editbutton-image" src="images/editbutton.svg" alt="редактировать">
         </button>
@@ -74,19 +75,23 @@
         </div>
       </article>
     </section>
-    <section class="popup">
-      <div class="popup__container">
+    <section class="popup edit_popup">
+      <form class="popup__container">
         <p class="popup__title">Редактировать профиль</p>
-        <input class="popup__input-name" type="text">
-        <input class="popup__input-job" type="text">
+        <fieldset class="popup__input-userdata">
+          <input class="popup__input-name popup__input" placeholder="Жак-Ив Кусто" type="text">
+          <input class="popup__input-job popup__input" placeholder="Исследователь океана" type="text">
+        </fieldset>
         <button class="popup__button">
           <p class="popup__button-text">Сохранить</p>
         </button>
         <button class="popup__close-button"></button>
-      </div>
+      </form>
     </section>
   </main>
   <footer class="footer">
-    <h1 class="footer__copyright">©&nbsp;2020&nbsp;Mesto&nbsp;Russia</p>
+    <p class="footer__copyright">©&nbsp;2020&nbsp;Mesto&nbsp;Russia</p>
   </footer>
 </body>
+
+</html>
