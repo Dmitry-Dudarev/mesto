@@ -9,7 +9,7 @@
   background-size: cover;
   top: 0;
   right: 0;
-  translate: 40px -40px;
+  transform: translate(40px -40px);
 }
 
 .popup__close-button:hover {
@@ -21,6 +21,6 @@
   .popup__close-button {
     width: 20px;
     height: 20px;
-    translate: 0 -36px;
+    transform: translate(0 -36px);
   }
 }

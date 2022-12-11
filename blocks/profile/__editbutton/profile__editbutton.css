@@ -6,7 +6,7 @@
   grid-column-start: 1;
   grid-row-start: 1;
   justify-self: flex-end;
-  translate: 43px;
+  transform: translate(43px);
 }
 
 .profile__editbutton:hover {
@@ -14,17 +14,8 @@
   opacity: 0.6;
 }
 
-@media (max-width: 1060px) {
-  .profile__editbutton {
-    grid-column-start: 1;
-    grid-row-start: 1;
-    justify-self: flex-end;
-    translate: 42px;
-  }
-}
-
 @media (max-width: 465px) {
   .profile__editbutton {
-    translate: 28px;
+    transform: translate(28px);
   }
 }

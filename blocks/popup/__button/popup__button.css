@@ -6,6 +6,11 @@
   min-height: 50px;
   background-color: #000;
   border-radius: 2px;
+  color: #FFF;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.2222;
 }
 
 .popup__button:hover {
@@ -16,5 +21,12 @@
 @media (max-width: 550px) {
   .popup__button {
     min-height: 46px;
+  }
+}
+
+@media (max-width: 550px) {
+  .popup__button {
+    font-size: 14px;
+    line-height: 1.2143;
   }
 }
