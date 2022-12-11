@@ -37,4 +37,4 @@
   ```
 
 Ссылка на проект:
-  https://dmitry-dudarev.github.io/russian-travel/
+  https://dmitry-dudarev.github.io/mesto/
