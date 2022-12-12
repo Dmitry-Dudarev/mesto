@@ -1,12 +1,17 @@
 .profile__editbutton {
+  min-width: 24px;
+  min-height: 24px;
   border: 0;
-  padding: 0 0 2px 0;
+  padding: 0;
   background-color: #000;
-  align-self: end;
+  align-self: center;
   grid-column-start: 1;
   grid-row-start: 1;
-  justify-self: flex-end;
-  transform: translate(43px);
+  justify-self: end;
+  transform: translate(43px, 4px);
+  background-image: url(../../../images/editbutton.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .profile__editbutton:hover {
@@ -16,6 +21,8 @@
 
 @media (max-width: 465px) {
   .profile__editbutton {
+    min-width: 18px;
+    min-height: 18px;
     transform: translate(28px);
   }
 }

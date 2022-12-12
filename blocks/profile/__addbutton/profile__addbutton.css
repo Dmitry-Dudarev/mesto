@@ -7,6 +7,10 @@
   justify-self: flex-end;
   margin-left: auto;
   background-color: #000;
+  background-image: url(../../../images/addbutton.svg);
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .profile__addbutton:hover {
@@ -19,5 +23,11 @@
     width: 100%;
     justify-self: center;
     align-self: center;
+  }
+}
+
+@media (max-width: 465px) {
+  .profile__addbutton {
+    background-size: 16px;
   }
 }
