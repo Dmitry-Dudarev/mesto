@@ -1,6 +1,13 @@
 .element__reaction {
+  margin: 30px 19px;
+  border: 0;
+  padding: 0;
   min-width: 22px;
-  margin: 30px 20px;
+  min-height: 19px;
+  background-color: initial;
+  background-image: url(../../../images/element__reaction.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .element__reaction:hover {
@@ -15,6 +22,6 @@
 
 @media (max-width: 465px) {
   .element__reaction {
-    margin: 30px 20px 29px 20px;
+    margin: 30px 20px;
   }
 }
