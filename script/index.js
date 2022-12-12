@@ -3,11 +3,11 @@ let userName = document.querySelector('.profile__username');
 let aboutUser = document.querySelector('.profile__aboutuser');
 const editPopup = document.querySelector('.popup');
 const closePopupButton = document.querySelector('.popup__close-button');
-const savePopupButton = document.querySelector('.popup__button');
+const savePopupButton = document.querySelector('.popup__save-button');
 
-let editUserName = document.querySelector('.popup__input-name');
+let editUserName = document.querySelector('.popup__input_name');
 editUserName.placeholder = userName.textContent
-let editUserJob = document.querySelector('.popup__input-job');
+let editUserJob = document.querySelector('.popup__input_job');
 editUserJob.placeholder = aboutUser.textContent
 
 profileEditButton.addEventListener('click', (event) => {
@@ -30,8 +30,8 @@ savePopupButton.addEventListener('click', (event) => {
 });
 
 let formElement = document.querySelector('.popup__container');
-let nameInput = formElement.querySelector('.popup__input-name');
-let jobInput = formElement.querySelector('.popup__input-job');
+let nameInput = formElement.querySelector('.popup__input_name');
+let jobInput = formElement.querySelector('.popup__input_job');
 
 function handleFormSubmit (evt) {
   evt.preventDefault();

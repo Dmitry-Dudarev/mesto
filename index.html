@@ -71,18 +71,18 @@
         </div>
       </article>
     </section>
-    <section class="popup">
-      <form class="popup__container" method="get" name="editform">
-        <p class="popup__title">Редактировать профиль</p>
-        <fieldset class="popup__input-userdata">
-          <input class="popup__input-name popup__input" placeholder="" type="text" name="username">
-          <input class="popup__input-job popup__input" placeholder="" type="text" name="userjob">
-        </fieldset>
-        <button type="submit" class="popup__button">Сохранить</button>
-        <button class="popup__close-button" type="button"></button>
-      </form>
-    </section>
   </main>
+  <div class="popup">
+    <div class="popup__container">
+      <h3 class="popup__title">Редактировать профиль</h3>
+      <form class="popup__input-userdata" method="get" name="editform">
+        <input class="popup__input popup__input_name" placeholder="" type="text" name="username">
+        <input class="popup__input popup__input_job" placeholder="" type="text" name="userjob">
+        <button type="submit" class="popup__save-button">Сохранить</button>
+      </form>
+      <button class="popup__close-button" type="button"></button>
+    </div>
+  </div>
   <footer class="footer">
     <p class="footer__copyright">©&nbsp;2020&nbsp;Mesto&nbsp;Russia</p>
   </footer>
