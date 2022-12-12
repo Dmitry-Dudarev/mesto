@@ -11,27 +11,26 @@
 *Реализована кнопка, нажатие на которую позволяет вызвать форму редактирования данных пользователя. 
 
   ```JavaScript
-      .profileEditButton.addEventListener('click', (event) => {
-  	event.preventDefault();
+      profileEditButton.addEventListener('click', () => {
+  	editUserName.value = userName.textContent;
+  	editUserJob.value = aboutUser.textContent;
   	editPopup.classList.add('popup_opened');
   });
   ```
 *Введенные в форму данные сохраняются на странице нажатием на соответствующую кнопку, заменяя собой предществующую информацию.
 
   ```JavaScript
-      savePopupButton.addEventListener('click', (event) => {
-  	event.preventDefault();
+      function handleFormSubmit (evt) {
+  	evt.preventDefault();
   	userName.textContent = editUserName.value;
   	aboutUser.textContent = editUserJob.value;
   	editPopup.classList.remove('popup_opened');
-  });
+  }
+  formElement.addEventListener('submit', handleFormSubmit);
   ```
 *Реализована кнопка закрытия формы редактирования без внесения изменений в данные.
   ```JavaScript
-      closePopupButton.addEventListener('click', (event) => {
-  	event.preventDefault();
-  	editUserName.value = userName.textContent;
-  	editUserJob.value = aboutUser.textContent;
+     closePopupButton.addEventListener('click', () => {
   	editPopup.classList.remove('popup_opened');
   });
   ```
