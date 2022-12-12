@@ -13,7 +13,7 @@
   grid-row-start: 1;
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 1270px) {
   .profile__username {
     max-width: 400px;
     font-size: 38px;
