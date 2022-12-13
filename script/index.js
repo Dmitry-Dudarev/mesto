@@ -4,10 +4,10 @@ let aboutUser = document.querySelector('.profile__aboutuser');
 const editPopup = document.querySelector('.popup');
 const closePopupButton = document.querySelector('.popup__close-button');
 const savePopupButton = document.querySelector('.popup__save-button');
-let formElement = document.querySelector('.popup__container');
-let editUserName = document.querySelector('.popup__input_name');
+let formElement = document.querySelector('.popup__input-userdata');
+let editUserName = document.querySelector('.popup__input_type_name');
 editUserName.placeholder = userName.textContent
-let editUserJob = document.querySelector('.popup__input_job');
+let editUserJob = document.querySelector('.popup__input_type_job');
 editUserJob.placeholder = aboutUser.textContent
 
 profileEditButton.addEventListener('click', () => {
