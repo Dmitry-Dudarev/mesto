@@ -21,6 +21,11 @@
 @import url(../blocks/element/__bottom/element__bottom.css);
 @import url(../blocks/element/__text/element__text.css);
 @import url(../blocks/element/__reaction/element__reaction.css);
+
+
+
+
+@import url(../blocks/element/__trash/element__trash.css);
 /* popup */
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
@@ -33,3 +38,5 @@
 /* footer */
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
+
+/*   @import url(../blocks);    */
