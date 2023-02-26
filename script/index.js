@@ -1,56 +1,53 @@
-const profileEditButton = document.querySelector('.profile__editbutton');
-let userName = document.querySelector('.profile__username');
-let aboutUser = document.querySelector('.profile__aboutuser');
+const userName = document.querySelector('.profile__username');
+const aboutUser = document.querySelector('.profile__aboutuser');
 const popup = document.querySelector('.popup');
 const closePopupButton = document.querySelector('.popup__close-button');
 const savePopupButton = document.querySelector('.popup__save-button');
-let formElement = document.querySelector('.popup__input-userdata');
+const formElement = document.querySelector('.popup__input-userdata');
 const popupTitle = document.querySelector('.popup__title');
 const popupDesignation = document.querySelector('.popup__input_designation');
 const popupProperty = document.querySelector('.popup__input_property');
+const profileEditButton = document.querySelector('.profile__editbutton');
 const addButton = document.querySelector('.profile__addbutton');
 
 
 const profile = {
     title: 'Редактировать профиль',
+    designationPlaceholder: userName.textContentt,
+    designationValue: userName.textContent,
+    propertyPlaceholder: aboutUser.textContent,
+    propertyValue: aboutUser.textContent,
     button: 'Сохранить',
 };
 
 const card = {
     title: 'Новое место',
-    designation: 'Название',
-    property: 'Ссылка на картинку',
-    button: 'Сохранить',
+    designationPlaceholder: 'Название',
+    designationValue: '',
+    propertyPlaceholder: 'Ссылка на картинку',
+    propertyValue: '',
+    button: 'Создать',
 };
 
-// profileEditButton.addEventListener('click', () => {
-//   popup.setAttribute('data-profile',''); - 
-//   popup.classList.add('popup_opened'); - 
-//   popupDesignation.placeholder = userName.textContent;
-//   popupProperty.placeholder = aboutUser.textContent;
-//   document.querySelector('.popup__title').textContent = 'Редактировать профиль';
-//   popupDesignation.value = userName.textContent;
-//   editUserJob.value = aboutUser.textContent;
-//   savePopupButton.textContent = 'Сохранить';
-// });
 
-
-profileEditButton.addEventListener('click', editProfile);
-
-function editProfile () {
-  popup.setAttribute('data-profile','');
+function popupCreator (elem) {
   togglePopup();
-  createProfileEditor();
-}
+  popupTitle.textContent = elem.title;
+  popupDesignation.placeholder = elem.designationPlaceholder;
+  popupProperty.placeholder = elem.propertyPlaceholder;
+  popupDesignation.value = elem.designationValue;
+  popupProperty.value = elem.propertyValue;
+  savePopupButton.textContent = elem.button;
+};
 
-function createProfileEditor () {
-  popupDesignation.placeholder = userName.textContent;
-  popupProperty.placeholder = aboutUser.textContent;
-  popupTitle.textContent = profile.title;
-  popupDesignation.value = userName.textContent;
-  popupProperty.value = aboutUser.textContent;
-  savePopupButton.textContent = profile.button;
-}
+profileEditButton.addEventListener('click', () => {
+  popup.setAttribute('data-profile','');
+  popupCreator(profile);
+});
+
+addButton.addEventListener ('click', () => {
+  popupCreator(card);
+});
 
 function togglePopup () {
   popup.classList.toggle('popup_opened');
@@ -75,18 +72,4 @@ function handleFormSubmit (evt) {
     alert(`название карточки: ${popupDesignation.value};
            Ссылка на картинку: "${popupProperty.value}"`);
   }
-}
-
-
-addButton.addEventListener ('click', openAddCardForm);
-function openAddCardForm () {
-  popupDesignation.placeholder = 'Название';
-  popupProperty.placeholder = 'Ссылка на картинку';
-  popup.classList.add('popup_opened');
-  document.querySelector('.popup__title').textContent = 'Новое место';
-  popupDesignation.value = '';
-  popupProperty.value = '';
-  savePopupButton.textContent = 'Создать';
-
-}
-
+};
