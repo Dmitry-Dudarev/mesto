@@ -83,7 +83,6 @@ const cards = [
   },
 ];
 
-// создается комплект первых 6-ти карточек
 cards.forEach(function (elem) {
   const cardTemplate = document.querySelector('.cardTemplate').content.cloneNode(true);
   cardTemplate.querySelector('.element__text').textContent = elem.name;
@@ -108,7 +107,7 @@ function addNewCard() {
   cardTemplate.querySelector('.element__trash').addEventListener('click', deleteCard);
   cardTemplate.querySelector('.element__reaction').addEventListener('click', reactToACard);
   elements.prepend(cardTemplate);
-}
+};
 
 function deleteCard(evt) {
   evt.target.closest('.element').remove();
