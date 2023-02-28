@@ -4,57 +4,38 @@ const profileEditButton = document.querySelector('.profile__editbutton');
 const popup = document.querySelector('.popup');
 const closePopupButton = document.querySelector('.popup__close-button');
 const savePopupButton = document.querySelector('.popup__save-button');
-const formElement = document.querySelector('.popup__input-userdata');
-const popupTitle = document.querySelector('.popup__title');
-const popupDesignation = document.querySelector('.popup__input_designation');
-const popupProperty = document.querySelector('.popup__input_property');
+const profileForm = document.querySelector('.profile-form__input');
+
+
+
+const inputUserName = document.querySelector('.profile-form__input_name');
+const inputUserCareer = document.querySelector('.profile-form__input_career');
+const userNameInput = document.querySelector('.profile-form__input_name');
+
+const userCareerInput = document.querySelector('.profile-form__input_career');
+
+const cardName = document.querySelector('.card-creator__input_name');
+const cardLink = document.querySelector('.card-creator__input_link');
+
+
+
 const addButton = document.querySelector('.profile__addbutton');
 const elements = document.querySelector('.elements');
 const picture = document.querySelector('.picture');
 
-const profile = {
-  title: 'Редактировать профиль',
-  designationPlaceholder: userName.textContent,
-  designationValue: userName.textContent,
-  propertyPlaceholder: aboutUser.textContent,
-  propertyValue: aboutUser.textContent,
-  button: 'Сохранить',
-};
-
-const card = {
-  title: 'Новое место',
-  designationPlaceholder: 'Название',
-  designationValue: '',
-  propertyPlaceholder: 'Ссылка на картинку',
-  propertyValue: '',
-  button: 'Создать',
-};
-
+profileEditButton.addEventListener 
 // функция заполнения текстовых узлов попапа 
 // на основании данных объектов profile и card
-function popupCreator(elem) {
-  togglePopup();
-  popupTitle.textContent = elem.title;
-  popupDesignation.placeholder = elem.designationPlaceholder;
-  popupProperty.placeholder = elem.propertyPlaceholder;
-  popupDesignation.value = elem.designationValue;
-  popupProperty.value = elem.propertyValue;
-  savePopupButton.textContent = elem.button;
-};
+// function openProfileForm() {
+//   togglePopup();
+  
+  
+// };
 
 profileEditButton.addEventListener('click', () => {
-  // добавляет пользовательский атрибут,
-  // который укажет функции handleFormSubmit 
-  // как поступить с введенными данными
-  popup.setAttribute('data-profile', '');
-  popupCreator(profile);
-});
-
-// при вызове данной функции пользовательский атрибут не добавляется,
-// так как в текущей версии страницы представлены
-// всего два варианта формы
-addButton.addEventListener('click', () => {
-  popupCreator(card);
+  togglePopup()
+  // userNameInput.placeholder = userName.textContent;
+  // userCareerInput.placeholder = aboutUser.textContent;
 });
 
 function togglePopup() {
@@ -62,9 +43,20 @@ function togglePopup() {
 }
 
 closePopupButton.addEventListener('click', () => {
-  popup.removeAttribute('data-profile');
   togglePopup();
 });
+
+
+profileForm.addEventListener('submit', handleFormSubmit);
+function handleFormSubmit(evt) {
+  evt.preventDefault();
+  userNameInput.value = userName.textContent;
+  userCareerInput.value = aboutUser.textContent;
+  userName.textContent = userNameInput.value;
+  aboutUser.textContent = userCareerInput.value;
+  togglePopup();
+};
+
 
 const cards = [
   {
