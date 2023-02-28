@@ -58,7 +58,7 @@ profileEditButton.addEventListener('click', () => {
 
 // при вызове данной функции пользовательский атрибут не добавляется,
 // так как в текущей версии страницы представлены
-// всего два варианта попапа
+// всего два варианта формы
 addButton.addEventListener('click', () => {
   popupCreator(card);
 });
@@ -113,6 +113,7 @@ cards.forEach(function (elem) {
   cardTemplate.querySelector('.element__image').alt = elem.alt;
   cardTemplate.querySelector('.element__image').addEventListener('click', openPicture);
   cardTemplate.querySelector('.element__trash').addEventListener('click', deleteCard);
+  cardTemplate.querySelector('.element__reaction').addEventListener('click', reactToACard);
   elements.prepend(cardTemplate);
 });
 
@@ -124,6 +125,7 @@ function addNewCard() {
   cardTemplate.querySelector('.element__image').src = cards[0].link;
   cardTemplate.querySelector('.element__image').addEventListener('click', openPicture);
   cardTemplate.querySelector('.element__trash').addEventListener('click', deleteCard);
+  cardTemplate.querySelector('.element__reaction').addEventListener('click', reactToACard);
   elements.prepend(cardTemplate);
 }
 
@@ -150,7 +152,6 @@ function deleteCard(evt) {
 
 function openPicture(evt) {
   const elem = evt.target.closest('.element')
-  // открывает форму вывода полноразмерного изображения
   picture.classList.add('picture_opened');
   // добавляет адрес ссылки на изображение
   // в форму для вывода полноразмерного изображения (по клику на его карточку)
@@ -165,3 +166,7 @@ document.querySelector('.picture__close-button').addEventListener('click', () =>
   picture.classList.remove('picture_opened');
 });
 
+function reactToACard (evt) {
+  console.log(evt.target.src);
+  evt.target.src = 'images/element__reaction_full.svg';
+};

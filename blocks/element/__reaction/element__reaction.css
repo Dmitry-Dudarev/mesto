@@ -4,21 +4,12 @@
   padding: 0;
   min-width: 22px;
   min-height: 19px;
-  background-color: initial;
-  background-image: url(../../../images/element__reaction.svg);
-  background-size: contain;
-  background-repeat: no-repeat;
 }
 
 .element__reaction:hover {
   cursor: pointer;
   opacity: 0.6;
 }
-
-/* .element__reaction:active {
-  opacity: 1;
-  fill: black;
-} */
 
 @media (max-width: 465px) {
   .element__reaction {
