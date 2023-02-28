@@ -41,7 +41,7 @@ addButton.addEventListener('click', () => {
 
 cardCreatorCloseButton.addEventListener('click', () => {
   document.querySelector('.card-creator').classList.remove('popup_opened');
-})
+});
 
 cardForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
