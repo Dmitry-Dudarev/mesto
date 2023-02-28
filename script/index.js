@@ -5,7 +5,7 @@ const popup = document.querySelector('.popup');
 const closePopupButton = document.querySelector('.popup__close-button');
 const savePopupButton = document.querySelector('.popup__save-button');
 const profileForm = document.querySelector('.profile-form__input');
-
+const saveProfileForm = document.querySelector('.profile-form__save-button');
 
 
 const inputUserName = document.querySelector('.profile-form__input_name');
@@ -23,19 +23,10 @@ const addButton = document.querySelector('.profile__addbutton');
 const elements = document.querySelector('.elements');
 const picture = document.querySelector('.picture');
 
-profileEditButton.addEventListener 
-// функция заполнения текстовых узлов попапа 
-// на основании данных объектов profile и card
-// function openProfileForm() {
-//   togglePopup();
-  
-  
-// };
-
 profileEditButton.addEventListener('click', () => {
+  userNameInput.value = userName.textContent;
+  userCareerInput.value = aboutUser.textContent;
   togglePopup()
-  // userNameInput.placeholder = userName.textContent;
-  // userCareerInput.placeholder = aboutUser.textContent;
 });
 
 function togglePopup() {
@@ -46,12 +37,9 @@ closePopupButton.addEventListener('click', () => {
   togglePopup();
 });
 
-
-profileForm.addEventListener('submit', handleFormSubmit);
+saveProfileForm.addEventListener('submit', handleFormSubmit);
 function handleFormSubmit(evt) {
   evt.preventDefault();
-  userNameInput.value = userName.textContent;
-  userCareerInput.value = aboutUser.textContent;
   userName.textContent = userNameInput.value;
   aboutUser.textContent = userCareerInput.value;
   togglePopup();
