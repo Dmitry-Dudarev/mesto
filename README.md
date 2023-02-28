@@ -8,31 +8,31 @@
 
 ## JavaScript
 
-*Реализована кнопка, нажатие на которую позволяет вызвать форму редактирования данных пользователя. 
+* Реализованы формы редактирования данных профиля и добавления новых карточек с фотографиями. 
+* После загрузки страницы отображается 6 карточек. Данные для их формирования функция получает перебором массива методом forEach:
 
   ```JavaScript
-      profileEditButton.addEventListener('click', () => {
-  	editUserName.value = userName.textContent;
-  	editUserJob.value = aboutUser.textContent;
-  	editPopup.classList.add('popup_opened');
-  });
+    cards.forEach(function (elem) {
+  
+    });
   ```
-*Введенные в форму данные сохраняются на странице нажатием на соответствующую кнопку, заменяя собой предществующую информацию.
+* Обращение к элементам массива осуществляется методом ключ - значение, что позволяет получать необходимые данные и вносить в массив изменения:
 
   ```JavaScript
-      function handleFormSubmit (evt) {
-  	evt.preventDefault();
-  	userName.textContent = editUserName.value;
-  	aboutUser.textContent = editUserJob.value;
-  	editPopup.classList.remove('popup_opened');
-  }
-  formElement.addEventListener('submit', handleFormSubmit);
+    cardTemplate.querySelector('.element__image').src = elem.link;
   ```
-*Реализована кнопка закрытия формы редактирования без внесения изменений в данные.
+* Реализована возможность добавлять на страницу новые карточки, внося любое название и ссылку на изображение. Использован шаблон <template> с последующим копированием данных .cloneNode() и их редактированием:
   ```JavaScript
-     closePopupButton.addEventListener('click', () => {
-  	editPopup.classList.remove('popup_opened');
-  });
+    function addNewCard() {
+    const cardTemplate = document.querySelector('.cardTemplate').content.cloneNode(true);
+  
+  };
+  ```
+* Реализована возможность удаления элементов методами .remove() и .closest(): 
+  ```JavaScript
+    function deleteCard(evt) {
+    evt.target.closest('.element').remove();
+     };
   ```
 
 Ссылка на проект:
