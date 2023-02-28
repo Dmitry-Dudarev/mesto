@@ -31,50 +31,49 @@
   </main>
   <div class="popup profile-form">
     <div class="popup__container">
-      <h3 class="popup__title">Редактировать профиль</h3>
+      <h3 class="popup__title profile-form__title">Редактировать профиль</h3>
       <form class="popup__input-userdata profile-form__input" method="get" name="editform">
-        <input class="popup__input profile-form__input_name" placeholder="" type="text" name="username">
-        <input class="popup__input profile-form__input_career" placeholder="" type="text" name="userjob">
+        <input class="popup__input profile-form__input_name" placeholder="" type="text">
+        <input class="popup__input profile-form__input_career" placeholder="" type="text">
         <button type="submit" class="popup__save-button profile-form__save-button">Сохранить</button>
+      </form>
+      <button class="popup__close-button profile-form__close-button" type="button"></button>
+    </div>
+  </div>  
+  <div class="popup card-creator">
+    <div class="popup__container">
+      <h3 class="popup__title card-creator__title">Новое место</h3>
+      <form class="popup__input-userdata card-creator__input" method="get" name="editform">
+        <input class="popup__input card-creator__input_name" placeholder="Название" type="text">
+        <input class="popup__input card-creator__input_link" placeholder="Ссылка на картинку" type="text">
+        <button type="submit" class="popup__save-button card-creator__save-button">Создать</button>
       </form>
       <button class="popup__close-button" type="button"></button>
     </div>
-    <div class="popup card-creator">
-
-
-      <div class="popup__container">
-        <h3 class="popup__title card-creator__title">Новое место</h3>
-        <form class="popup__input-userdata card-creator__input" method="get" name="editform">
-          <input class="popup__input card-creator__input_name" placeholder="Название" type="text" name="username">
-          <input class="popup__input card-creator__input_link" placeholder="Ссылка на картинку" type="text" name="userjob">
-          <button type="submit" class="popup__save-button card-creator__save-button">Создать</button>
-        </form>
-        <button class="popup__close-button" type="button"></button>
-      </div>
   </div>
-  
-  <div class="picture">
-    <div class="picture__container">
-      <img class="picture__image" src="/" alt="Описание изображения">
-      <figcaption class="picture__figcaption"></figcaption>
-      <button class="picture__close-button" type="button"></button>
+
+    <div class="picture">
+      <div class="picture__container">
+        <img class="picture__image" src="/" alt="Описание изображения">
+        <figcaption class="picture__figcaption"></figcaption>
+        <button class="picture__close-button" type="button"></button>
+      </div>
     </div>
-  </div>
 
-  <footer class="footer">
-    <p class="footer__copyright">©&nbsp;2020&nbsp;Mesto&nbsp;Russia</p>
-  </footer>
+    <footer class="footer">
+      <p class="footer__copyright">©&nbsp;2020&nbsp;Mesto&nbsp;Russia</p>
+    </footer>
 
-  <template class="cardTemplate">
-    <article class="element">
-      <img class="element__image" src=/ alt='Описание изображения'>
-      <div class="element__bottom">
-        <h2 class="element__text"></h2>
-        <img class="element__reaction" src="images/element__reaction_empty.svg" type="button"></button>
-      </div>
-      <button class="element__trash" type="button"></button>
-    </article>
-  </template>
+    <template class="cardTemplate">
+      <article class="element">
+        <img class="element__image" src=/ alt='Описание изображения'>
+        <div class="element__bottom">
+          <h2 class="element__text"></h2>
+          <img class="element__reaction" src="images/element__reaction_empty.svg" type="button"></button>
+        </div>
+        <button class="element__trash" type="button"></button>
+      </article>
+    </template>
 </body>
 
 </html>
