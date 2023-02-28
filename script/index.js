@@ -9,6 +9,7 @@ const saveProfileForm = document.querySelector('.profile-form__save-button');
 const userNameInput = document.querySelector('.profile-form__input_name');
 const userCareerInput = document.querySelector('.profile-form__input_career');
 const profileFormCloseButton = document.querySelector('.profile-form__close-button');
+const cardCreatorCloseButton = document.querySelector('.card-creator_close-button');
 const cardName = document.querySelector('.card-creator__input_name');
 const cardLink = document.querySelector('.card-creator__input_link');
 const addButton = document.querySelector('.profile__addbutton');
@@ -27,25 +28,27 @@ profileFormCloseButton.addEventListener('click', () => {
   document.querySelector('.profile-form').classList.remove('popup_opened');
 });
 
-profileForm.addEventListener('submit', handleFormSubmit);
-function handleFormSubmit(event) {
-  event.preventDefault();
+profileForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
   userName.textContent = userNameInput.value;
   aboutUser.textContent = userCareerInput.value;
   document.querySelector('.profile-form').classList.remove('popup_opened');
-};
+});
 
 addButton.addEventListener('click', () => {
   document.querySelector('.card-creator').classList.add('popup_opened');
 });
 
-cardForm.addEventListener('submit', handleFormSubmit);
-function handleFormSubmit(event) {
-  event.preventDefault();
+cardCreatorCloseButton.addEventListener('click', () => {
+  document.querySelector('.card-creator').classList.remove('popup_opened');
+})
+
+cardForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
   refreshCardsList();
   addNewCard();
   document.querySelector('.card-creator').classList.remove('popup_opened');
-};
+});
 
 const cards = [
   {
