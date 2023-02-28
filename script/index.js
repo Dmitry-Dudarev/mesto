@@ -12,10 +12,6 @@ const addButton = document.querySelector('.profile__addbutton');
 const elements = document.querySelector('.elements');
 const picture = document.querySelector('.picture');
 
-
-// объекты, содержащие свойства, необходимые для создания 
-// попапа редактирования профиля 
-// или попапа добавленния новой карточки
 const profile = {
   title: 'Редактировать профиль',
   designationPlaceholder: userName.textContent,
@@ -46,8 +42,6 @@ function popupCreator(elem) {
   savePopupButton.textContent = elem.button;
 };
 
-// функция срабатывает при клике 
-// на кнопке редактирования данных профиля;
 profileEditButton.addEventListener('click', () => {
   // добавляет пользовательский атрибут,
   // который укажет функции handleFormSubmit 
@@ -117,8 +111,31 @@ cards.forEach(function (elem) {
   elements.prepend(cardTemplate);
 });
 
-// функция создания новой карточки
-// шаблон берется из первого объекта массива cards
+formElement.addEventListener('submit', handleFormSubmit);
+function handleFormSubmit(evt) {
+  evt.preventDefault();
+  if (popup.hasAttribute('data-profile')) {
+    changeProfileData();
+  } else {
+    refreshCardsList();
+    addNewCard();
+  }
+  togglePopup();
+};
+
+function changeProfileData() {
+  userName.textContent = popupDesignation.value;
+  profile.designationValue = popupDesignation.value;
+  aboutUser.textContent = popupProperty.value;
+  profile.propertyValue = popupProperty.value;
+  popup.removeAttribute('data-profile');
+};
+
+function refreshCardsList() {
+  const newObject = { name: popupDesignation.value, link: popupProperty.value };
+  cards.unshift(newObject);
+};
+
 function addNewCard() {
   const cardTemplate = document.querySelector('.cardTemplate').content.cloneNode(true);
   cardTemplate.querySelector('.element__text').textContent = cards[0].name;
@@ -129,26 +146,9 @@ function addNewCard() {
   elements.prepend(cardTemplate);
 }
 
-formElement.addEventListener('submit', handleFormSubmit);
-function handleFormSubmit(evt) {
-  evt.preventDefault();
-  if (popup.hasAttribute('data-profile')) {
-    userName.textContent = popupDesignation.value;
-    profile.designationValue = popupDesignation.value;
-    aboutUser.textContent = popupProperty.value;
-    profile.propertyValue = popupProperty.value;
-    popup.removeAttribute('data-profile');
-  } else {
-    const newObject = { name: popupDesignation.value, link: popupProperty.value };
-    cards.unshift(newObject);
-    addNewCard();
-  }
-  togglePopup();
-};
-
 function deleteCard(evt) {
   evt.target.closest('.element').remove();
-}
+};
 
 function openPicture(evt) {
   const elem = evt.target.closest('.element')
@@ -161,12 +161,10 @@ function openPicture(evt) {
   document.querySelector('.picture__figcaption').textContent = pictureText;
 };
 
-// закрывает форму вывода полноразмерного изображения
 document.querySelector('.picture__close-button').addEventListener('click', () => {
   picture.classList.remove('picture_opened');
 });
 
-function reactToACard (evt) {
-  console.log(evt.target.src);
+function reactToACard(evt) {
   evt.target.src = 'images/element__reaction_full.svg';
 };
