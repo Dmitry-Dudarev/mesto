@@ -26,6 +26,8 @@ const picture = document.querySelector('.picture');
 profileEditButton.addEventListener('click', () => {
   userNameInput.value = userName.textContent;
   userCareerInput.value = aboutUser.textContent;
+  userNameInput.placeholder = userName.textContent;
+  userCareerInput.placeholder = aboutUser.textContent;
   togglePopup()
 });
 
@@ -43,6 +45,7 @@ function handleFormSubmit(evt) {
   userName.textContent = userNameInput.value;
   aboutUser.textContent = userCareerInput.value;
   togglePopup();
+  evt.preventDefault();
 };
 
 
