@@ -10,33 +10,33 @@ const popupDesignation = document.querySelector('.popup__input_designation');
 const popupProperty = document.querySelector('.popup__input_property');
 const addButton = document.querySelector('.profile__addbutton');
 const elements = document.querySelector('.elements');
-
+const picture = document.querySelector('.picture');
 
 
 // объекты, содержащие свойства, необходимые для создания 
 // попапа редактирования профиля 
 // или попапа добавленния новой карточки
 const profile = {
-    title: 'Редактировать профиль',
-    designationPlaceholder: userName.textContent,
-    designationValue: userName.textContent,
-    propertyPlaceholder: aboutUser.textContent,
-    propertyValue: aboutUser.textContent,
-    button: 'Сохранить',
+  title: 'Редактировать профиль',
+  designationPlaceholder: userName.textContent,
+  designationValue: userName.textContent,
+  propertyPlaceholder: aboutUser.textContent,
+  propertyValue: aboutUser.textContent,
+  button: 'Сохранить',
 };
 
 const card = {
-    title: 'Новое место',
-    designationPlaceholder: 'Название',
-    designationValue: '',
-    propertyPlaceholder: 'Ссылка на картинку',
-    propertyValue: '',
-    button: 'Создать',
+  title: 'Новое место',
+  designationPlaceholder: 'Название',
+  designationValue: '',
+  propertyPlaceholder: 'Ссылка на картинку',
+  propertyValue: '',
+  button: 'Создать',
 };
 
 // функция заполнения текстовых узлов попапа 
 // на основании данных объектов profile и card
-function popupCreator (elem) {
+function popupCreator(elem) {
   togglePopup();
   popupTitle.textContent = elem.title;
   popupDesignation.placeholder = elem.designationPlaceholder;
@@ -49,21 +49,21 @@ function popupCreator (elem) {
 // функция срабатывает при клике 
 // на кнопке редактирования данных профиля;
 profileEditButton.addEventListener('click', () => {
-    // добавляет пользовательский атрибут,
-    // который укажет функции handleFormSubmit 
-    // как поступить с введенными данными
-  popup.setAttribute('data-profile','');
+  // добавляет пользовательский атрибут,
+  // который укажет функции handleFormSubmit 
+  // как поступить с введенными данными
+  popup.setAttribute('data-profile', '');
   popupCreator(profile);
 });
 
 // при вызове данной функции пользовательский атрибут не добавляется,
 // так как в текущей версии страницы представлены
 // всего два варианта попапа
-addButton.addEventListener ('click', () => {
+addButton.addEventListener('click', () => {
   popupCreator(card);
 });
 
-function togglePopup () {
+function togglePopup() {
   popup.classList.toggle('popup_opened');
 }
 
@@ -106,14 +106,11 @@ const cards = [
 ];
 
 // создается комплект первых 6-ти карточек
-cards.forEach(function(elem) {
+cards.forEach(function (elem) {
   const cardTemplate = document.querySelector('.cardTemplate').content.cloneNode(true);
   cardTemplate.querySelector('.element__text').textContent = elem.name;
   cardTemplate.querySelector('.element__image').src = elem.link;
   cardTemplate.querySelector('.element__image').alt = elem.alt;
-
-
-
   cardTemplate.querySelector('.element__image').addEventListener('click', openPicture);
   cardTemplate.querySelector('.element__trash').addEventListener('click', deleteCard);
   elements.prepend(cardTemplate);
@@ -131,7 +128,7 @@ function addNewCard() {
 }
 
 formElement.addEventListener('submit', handleFormSubmit);
-function handleFormSubmit (evt) {
+function handleFormSubmit(evt) {
   evt.preventDefault();
   if (popup.hasAttribute('data-profile')) {
     userName.textContent = popupDesignation.value;
@@ -140,20 +137,18 @@ function handleFormSubmit (evt) {
     profile.propertyValue = popupProperty.value;
     popup.removeAttribute('data-profile');
   } else {
-    const newObject = {name: popupDesignation.value, link: popupProperty.value};
+    const newObject = { name: popupDesignation.value, link: popupProperty.value };
     cards.unshift(newObject);
     addNewCard();
   }
   togglePopup();
 };
 
-function deleteCard (evt) {
+function deleteCard(evt) {
   evt.target.closest('.element').remove();
 }
 
-const picture = document.querySelector('.picture');
-
-function openPicture (evt) {
+function openPicture(evt) {
   const elem = evt.target.closest('.element')
   // открывает форму вывода полноразмерного изображения
   picture.classList.add('picture_opened');
@@ -166,7 +161,7 @@ function openPicture (evt) {
 };
 
 // закрывает форму вывода полноразмерного изображения
-document.querySelector('.picture__close-button').addEventListener('click',() => {
+document.querySelector('.picture__close-button').addEventListener('click', () => {
   picture.classList.remove('picture_opened');
 });
 

@@ -8,6 +8,7 @@
   z-index: 0;
   background-color: initial;
   background-image: url(../../../images/element__trash.svg);
+  transition: opacity 0.5s, transform 0.5s;
 }
 
 .element__trash:hover {

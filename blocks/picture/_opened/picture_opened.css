@@ -1,3 +1,5 @@
 .picture_opened {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+  background-color: rgba(0, 0, 0, 0.9);
 }
