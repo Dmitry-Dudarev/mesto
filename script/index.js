@@ -17,9 +17,10 @@ const cardName = document.querySelector('.card-creator__name');
 const cardLink = document.querySelector('.card-creator__link');
 const addButton = document.querySelector('.profile__addbutton');
 const elements = document.querySelector('.elements');
-const picture = document.querySelector('.picture');
-const pictureImage = picture.querySelector('.picture__image');
-const pictureFigcaption = picture.querySelector('.picture__figcaption');
+const picture = document.querySelector('.popup__picture');
+const pictureImage = document.querySelector('.popup__image');
+const pictureFigcaption = document.querySelector('.popup__figcaption');
+const pictureCloseButton = document.querySelector('.picture__close-button');
 const card = {};
 let newCard;
 
@@ -62,7 +63,6 @@ cardFormInput.addEventListener('submit', (evt) => {
   card.link = cardLink.value;
   createCard(card);
   addCard ();
-  console.log(card);
   closePopup(cardCreator);
 });
 
@@ -80,7 +80,7 @@ function createCard(elem) {
   preCard.querySelector('.element__image').alt = elem.name;
   preCard.querySelector('.element__image').addEventListener('click', (evt) => openPicture(evt.target));
   preCard.querySelector('.element__trash').addEventListener('click', deleteCard);
-  preCard.querySelector('.element__reaction').addEventListener('click', reactToACard);
+  preCard.querySelector('.element__reaction').addEventListener('click', (evt) => reactToACard(evt.target));
   newCard = preCard;
 };
 
@@ -93,15 +93,16 @@ function deleteCard(evt) {
 };
 
 function openPicture(data) {
-  picture.classList.add('picture_opened');
+  openPopup(picture);
   pictureImage.src = data.src;
   pictureFigcaption.textContent = data.alt;
+  pictureImage.alt = `На фото: ${data.alt}`;
 };
 
-document.querySelector('.picture__close-button').addEventListener('click', () => {
-  picture.classList.remove('picture_opened');
+pictureCloseButton.addEventListener('click', () => {
+  closePopup(picture);
 });
 
-function reactToACard(evt) {
-  evt.target.src = 'images/element__reaction_full.svg';
+function reactToACard(reactionIcon) {
+  reactionIcon.classList.toggle('element__reaction_like');
 };

@@ -4,6 +4,8 @@
   padding: 0;
   min-width: 22px;
   min-height: 19px;
+  background-color: #fff;
+  background-image: url(../../../../images/element__reaction_empty.svg);
 }
 
 .element__reaction:hover {
