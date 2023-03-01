@@ -16,24 +16,11 @@
   
     });
   ```
-* Обращение к элементам массива осуществляется методом ключ - значение, что позволяет получать необходимые данные и вносить в массив изменения:
+* Обращение к элементам массива осуществляется методом ключ - значение, что позволяет получать необходимые данные и вносить в массив изменения.
 
-  ```JavaScript
-    cardTemplate.querySelector('.element__image').src = elem.link;
-  ```
 * Реализована возможность добавлять на страницу новые карточки, внося любое название и ссылку на изображение. Использован шаблон <template> с последующим копированием данных .cloneNode() и их редактированием:
-  ```JavaScript
-    function addNewCard() {
-    const cardTemplate = document.querySelector('.cardTemplate').content.cloneNode(true);
   
-  };
-  ```
 * Реализована возможность удаления элементов методами .remove() и .closest(): 
-  ```JavaScript
-    function deleteCard(evt) {
-    evt.target.closest('.element').remove();
-     };
-  ```
-
+ 
 Ссылка на проект:
   https://dmitry-dudarev.github.io/mesto/
