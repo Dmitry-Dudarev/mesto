@@ -11,7 +11,7 @@
 
 @media (max-width: 1279px) {
   .elements {
-    justify-content: center;
+    justify-content: space-around;
   }
 }
 
