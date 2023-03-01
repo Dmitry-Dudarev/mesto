@@ -17,10 +17,10 @@ const cardName = document.querySelector('.card-creator__name');
 const cardLink = document.querySelector('.card-creator__link');
 const addButton = document.querySelector('.profile__addbutton');
 const elements = document.querySelector('.elements');
-const picture = document.querySelector('.popup__picture');
+const picture = document.querySelector('.popup_picture_opened');
 const pictureImage = document.querySelector('.popup__image');
 const pictureFigcaption = document.querySelector('.popup__figcaption');
-const pictureCloseButton = document.querySelector('.picture__close-button');
+const pictureCloseButton = document.querySelector('.container__close-button');
 const card = {};
 let newCard;
 
