@@ -21,8 +21,6 @@ const picture = document.querySelector('.popup__picture');
 const pictureImage = document.querySelector('.popup__image');
 const pictureFigcaption = document.querySelector('.popup__figcaption');
 const pictureCloseButton = document.querySelector('.picture__close-button');
-const card = {};
-let newCard;
 
 function openPopup(elem) {
   elem.classList.add('popup_opened');
@@ -59,33 +57,31 @@ cardCreatorCloseButton.addEventListener('click', () => {
 
 cardFormInput.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  card.name = cardName.value;
-  card.link = cardLink.value;
-  createCard(card);
-  addCard ();
+  const data = {};
+  data.name = cardName.value;
+  data.link = cardLink.value;
+  addCard (data);
   closePopup(cardCreator);
 });
 
-cards.forEach(function (elem) {
-  card.name = elem.name;
-  card.link = elem.link;
-  createCard(card);
-  addCard ();
+cards.forEach(function (data) {
+  addCard (data);
 });
 
-function createCard(elem) {
+function createCard(data) {
   const preCard = cardTemplate.cloneNode(true);
-  preCard.querySelector('.element__text').textContent = elem.name;
-  preCard.querySelector('.element__image').src = elem.link;
-  preCard.querySelector('.element__image').alt = elem.name;
-  preCard.querySelector('.element__image').addEventListener('click', (evt) => openPicture(evt.target));
+  const cardImage = preCard.querySelector('.element__image');
+  cardImage.src = data.link;
+  cardImage.alt = data.name;
+  preCard.querySelector('.element__text').textContent = data.name;
   preCard.querySelector('.element__trash').addEventListener('click', deleteCard);
   preCard.querySelector('.element__reaction').addEventListener('click', (evt) => reactToACard(evt.target));
-  newCard = preCard;
+  cardImage.addEventListener('click', (data) => openPicture(data.target));
+  return preCard;
 };
 
-function addCard () {
-  elements.prepend(newCard);
+function addCard (data) {
+  elements.prepend(createCard(data));
 };
 
 function deleteCard(evt) {
