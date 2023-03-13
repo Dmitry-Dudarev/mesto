@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="pages/index.css">
   <script src="script/cards.js" defer></script>
   <script src="script/index.js" defer></script>
+  <script src="script/validate.js" defer></script>
 </head>
 
 <body class="page">
@@ -33,9 +34,11 @@
   <div class="popup profile-form">
     <div class="popup__container">
       <h3 class="popup__title profile-form__title">Редактировать профиль</h3>
-      <form class="popup__input-userdata profile-form__input" method="get" name="editform">
-        <input class="popup__input profile-form__name" placeholder="Жак-Ив Кусто" type="text">
-        <input class="popup__input profile-form__career" placeholder="Исследователь океана" type="text">
+      <form class="popup__input-userdata profile-form__input popup__form" method="get" novalidate>
+        <input name="profileName-input" class="popup__input profile-form__name" placeholder="Жак-Ив Кусто" type="text" minlength="2" maxlength="40" required>
+        <span class="popup__input-error profileName-input-error"></span>
+        <input name="profileCareer-input" class="popup__input profile-form__career" placeholder="Исследователь океана" type="text" type="text" minlength="2" и maxlength="200" required>
+        <span class="popup__input-error profileCareer-input-error"></span>
         <button type="submit" class="popup__save-button profile-form__save-button">Сохранить</button>
       </form>
       <button class="popup__close-button profile-form__close-button" type="button"></button>
@@ -44,9 +47,11 @@
   <div class="popup card-creator">
     <div class="popup__container">
       <h3 class="popup__title card-creator__title">Новое место</h3>
-      <form class="popup__input-userdata card-creator__input" method="get" name="editform">
-        <input class="popup__input card-creator__name" placeholder="Название" type="text">
-        <input class="popup__input card-creator__link" placeholder="Ссылка на картинку" type="text">
+      <form class="popup__input-userdata card-creator__input popup__form" method="get" novalidate>
+        <input name="cardName-input" class="popup__input card-creator__name" placeholder="Название" type="text" minlength="2" maxlength="30" required>
+        <span class="popup__input-error cardName-input-error"></span>
+        <input name="cardLink-input" class="popup__input card-creator__link" placeholder="Ссылка на картинку" type="url" required>
+        <span class="popup__input-error cardLink-input-error"></span>
         <button type="submit" class="popup__save-button card-creator__save-button">Создать</button>
       </form>
       <button class="popup__close-button card-creator__close-button" type="button"></button>
