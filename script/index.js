@@ -22,23 +22,35 @@ const pictureImage = document.querySelector('.popup__image');
 const pictureFigcaption = document.querySelector('.popup__figcaption');
 const pictureCloseButton = document.querySelector('.popup__close-button_picture_close');
 
-const checkEscape=  (event) => {
-  if(event.key == 'Escape'){
+const checkEscape = (event) => {
+  if (event.key == 'Escape') {
     closePopup(document.querySelector('.popup_opened'));
-    console.log(event.key)
   };
 };
 
+const checkClickTarget = (event) => {
+  if (event.target.closest('.popup_opened')) {
+    const activePopup = event.target.closest('.popup_opened');
+    const popupContainer = event.target.closest('.popup__container');
+    closeTargetPopup(popupContainer, activePopup);
+  };
+};
+
+const closeTargetPopup = (popupContainer, activePopup) => {
+  if (popupContainer == null) {
+    closePopup(activePopup);
+  };
+};
 
 function openPopup(elem) {
   elem.classList.add('popup_opened');
-  // document.addEventListener('click', (evt) => {checkClickTarget(evt, elem)});
-  // document.addEventListener('keydown', (evt) => {checkEscape(evt, elem)});
+  document.addEventListener('click', checkClickTarget);
   document.addEventListener('keydown', checkEscape);
 };
 
 function closePopup(elem) {
   elem.classList.remove('popup_opened');
+  document.removeEventListener('click', checkClickTarget);
   document.removeEventListener('keydown', checkEscape);
 };
 
