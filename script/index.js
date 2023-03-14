@@ -81,7 +81,7 @@ addButton.addEventListener('click', () => {
     errorClass: 'popup__input-error_active',
     submitButtonSelector: '.popup__save-button',
     inactiveButtonClass: 'popup__save-button_disabled',
-  }); 
+  });
   openPopup(cardCreator);
 });
 

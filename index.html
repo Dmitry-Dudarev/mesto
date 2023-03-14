@@ -35,29 +35,26 @@
     <div class="popup__container">
       <h3 class="popup__title profile-form__title">Редактировать профиль</h3>
       <form class="popup__input-userdata profile-form__input popup__form" method="get" novalidate>
-        <input name="profileName-input" class="popup__input profile-form__name" 
-          placeholder="Жак-Ив Кусто" type="text" value="Жак-Ив Кусто"
-          minlength="2" maxlength="40" required>
+        <input name="profileName-input" class="popup__input profile-form__name" placeholder="Жак-Ив Кусто" type="text"
+          value="Жак-Ив Кусто" minlength="2" maxlength="40" required>
         <span class="popup__input-error profileName-input-error"></span>
-        <input name="profileCareer-input" class="popup__input profile-form__career" 
-          placeholder="Исследователь океана" type="text" value="Исследователь океана" 
-          minlength="2" maxlength="200" required>
+        <input name="profileCareer-input" class="popup__input profile-form__career" placeholder="Исследователь океана"
+          type="text" value="Исследователь океана" minlength="2" maxlength="200" required>
         <span class="popup__input-error profileCareer-input-error"></span>
         <button type="submit" class="popup__save-button profile-form__save-button">Сохранить</button>
       </form>
       <button class="popup__close-button profile-form__close-button" type="button"></button>
     </div>
-  </div>  
+  </div>
   <div class="popup card-creator">
     <div class="popup__container">
       <h3 class="popup__title card-creator__title">Новое место</h3>
       <form class="popup__input-userdata card-creator__input popup__form" method="get" novalidate>
-        <input name="cardName-input" class="popup__input card-creator__name" 
-          placeholder="Название" type="text" 
+        <input name="cardName-input" class="popup__input card-creator__name" placeholder="Название" type="text"
           minlength="2" maxlength="30" required>
         <span class="popup__input-error cardName-input-error"></span>
-        <input name="cardLink-input" class="popup__input card-creator__link" 
-          placeholder="Ссылка на картинку" type="url" required>
+        <input name="cardLink-input" class="popup__input card-creator__link" placeholder="Ссылка на картинку" type="url"
+          required>
         <span class="popup__input-error cardLink-input-error"></span>
         <button type="submit" class="popup__save-button card-creator__save-button">Создать</button>
       </form>
@@ -74,16 +71,16 @@
   <footer class="footer">
     <p class="footer__copyright">©&nbsp;2020&nbsp;Mesto&nbsp;Russia</p>
   </footer>
-    <template class="cardTemplate">
-      <article class="element">
-        <img class="element__image" src=/ alt='Описание изображения'>
-        <div class="element__bottom">
-          <h2 class="element__text"></h2>
-          <button class="element__reaction" type="button"></button>
-        </div>
-        <button class="element__trash" type="button"></button>
-      </article>
-    </template>
+  <template class="cardTemplate">
+    <article class="element">
+      <img class="element__image" src=/ alt='Описание изображения'>
+      <div class="element__bottom">
+        <h2 class="element__text"></h2>
+        <button class="element__reaction" type="button"></button>
+      </div>
+      <button class="element__trash" type="button"></button>
+    </article>
+  </template>
 </body>
 
 </html>
