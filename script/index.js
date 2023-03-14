@@ -60,12 +60,12 @@ cardFormInput.addEventListener('submit', (evt) => {
   const data = {};
   data.name = cardName.value;
   data.link = cardLink.value;
-  addCard (data);
+  addCard(data);
   closePopup(cardCreator);
 });
 
 cards.forEach(function (data) {
-  addCard (data);
+  addCard(data);
 });
 
 function createCard(data) {
@@ -80,7 +80,7 @@ function createCard(data) {
   return preCard;
 };
 
-function addCard (data) {
+function addCard(data) {
   elements.prepend(createCard(data));
 };
 
@@ -101,4 +101,19 @@ pictureCloseButton.addEventListener('click', () => {
 
 function reactToACard(reactionIcon) {
   reactionIcon.classList.toggle('element__reaction_like');
+};
+
+
+document.addEventListener('click', (evt) => {
+  if (evt.target.closest('.popup_opened')) {
+    const activePopup = evt.target.closest('.popup_opened');
+    const popupContainer = evt.target.closest('.popup__container');
+    checkClickTarget(popupContainer, activePopup);
+  };
+});
+
+const checkClickTarget = (popupContainer, activePopup) => {
+  if (popupContainer == null) {
+    closePopup(activePopup);
+  };
 };
