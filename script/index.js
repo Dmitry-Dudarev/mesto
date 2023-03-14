@@ -6,6 +6,7 @@ const cardTemplate = document.querySelector('.cardTemplate').content;
 const savePopupButton = document.querySelector('.popup__save-button');
 const profileForm = document.querySelector('.profile-form');
 const cardCreator = document.querySelector('.card-creator');
+const cardCreatorForm = document.querySelector('.card-creator__input');
 const profileFormInput = document.querySelector('.profile-form__input');
 const cardFormInput = document.querySelector('.card-creator__input');
 const saveProfileForm = document.querySelector('.profile-form__save-button');
@@ -72,6 +73,15 @@ profileFormInput.addEventListener('submit', (evt) => {
 });
 
 addButton.addEventListener('click', () => {
+  enableValidation({
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    errorClassTemplate: '-error',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__input-error_active',
+    submitButtonSelector: '.popup__save-button',
+    inactiveButtonClass: 'popup__save-button_disabled',
+  }); 
   openPopup(cardCreator);
 });
 
@@ -106,6 +116,7 @@ function createCard(data) {
 
 function addCard(data) {
   elements.prepend(createCard(data));
+  cardCreatorForm.reset();
 };
 
 function deleteCard(evt) {
@@ -126,27 +137,3 @@ pictureCloseButton.addEventListener('click', () => {
 function reactToACard(reactionIcon) {
   reactionIcon.classList.toggle('element__reaction_like');
 };
-
-
-// document.addEventListener('click', (evt) => {
-//   if (evt.target.closest('.popup_opened')) {
-//     const activePopup = evt.target.closest('.popup_opened');
-//     const popupContainer = evt.target.closest('.popup__container');
-//     checkClickTarget(popupContainer, activePopup);
-//   };
-// });
-
-// const checkClickTarget = (popupContainer, activePopup) => {
-//   if (popupContainer == null) {
-//     closePopup(activePopup);
-//   };
-// };
-
-// const checkClickTarget = (evt, popup) => {
-//   const popupContainer = evt.target.closest('.popup__container');
-//   if((popup.classList.contains('popup_opened')) && (popupContainer == null)){
-//     console.log(popup)
-//     // closePopup(popup);
-//   };
-// };
-
