@@ -22,12 +22,24 @@ const pictureImage = document.querySelector('.popup__image');
 const pictureFigcaption = document.querySelector('.popup__figcaption');
 const pictureCloseButton = document.querySelector('.popup__close-button_picture_close');
 
+const checkEscape=  (event) => {
+  if(event.key == 'Escape'){
+    closePopup(document.querySelector('.popup_opened'));
+    console.log(event.key)
+  };
+};
+
+
 function openPopup(elem) {
   elem.classList.add('popup_opened');
+  // document.addEventListener('click', (evt) => {checkClickTarget(evt, elem)});
+  // document.addEventListener('keydown', (evt) => {checkEscape(evt, elem)});
+  document.addEventListener('keydown', checkEscape);
 };
 
 function closePopup(elem) {
   elem.classList.remove('popup_opened');
+  document.removeEventListener('keydown', checkEscape);
 };
 
 profileEditButton.addEventListener('click', () => {
@@ -104,16 +116,25 @@ function reactToACard(reactionIcon) {
 };
 
 
-document.addEventListener('click', (evt) => {
-  if (evt.target.closest('.popup_opened')) {
-    const activePopup = evt.target.closest('.popup_opened');
-    const popupContainer = evt.target.closest('.popup__container');
-    checkClickTarget(popupContainer, activePopup);
-  };
-});
+// document.addEventListener('click', (evt) => {
+//   if (evt.target.closest('.popup_opened')) {
+//     const activePopup = evt.target.closest('.popup_opened');
+//     const popupContainer = evt.target.closest('.popup__container');
+//     checkClickTarget(popupContainer, activePopup);
+//   };
+// });
 
-const checkClickTarget = (popupContainer, activePopup) => {
-  if (popupContainer == null) {
-    closePopup(activePopup);
-  };
-};
+// const checkClickTarget = (popupContainer, activePopup) => {
+//   if (popupContainer == null) {
+//     closePopup(activePopup);
+//   };
+// };
+
+// const checkClickTarget = (evt, popup) => {
+//   const popupContainer = evt.target.closest('.popup__container');
+//   if((popup.classList.contains('popup_opened')) && (popupContainer == null)){
+//     console.log(popup)
+//     // closePopup(popup);
+//   };
+// };
+
