@@ -1,4 +1,17 @@
 .popup__input-error {
+  margin: 0;
+  font-size: 13px;
+  min-height: 31px;
   color: #FF0000;
   visibility: hidden;
+}
+
+.popup__input-error:last-of-type {
+  padding-bottom: 17px;
+}
+
+@media (max-width: 465px) {
+  .popup__input-error:last-of-type {
+    padding-bottom: 14px;
+  }
 }
