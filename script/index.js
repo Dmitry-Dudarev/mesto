@@ -69,10 +69,45 @@ function openPopup(elem) {
 
 function closePopup(elem) {
   elem.classList.remove('popup_opened');
+  cardCreatorForm.reset();
   document.removeEventListener('click', checkClickTarget);
   document.removeEventListener('keydown', checkEscape);
-  cardCreatorForm.reset();
 };
+
+function createCard(data) {
+  const preCard = cardTemplate.cloneNode(true);
+  const cardImage = preCard.querySelector('.element__image');
+  cardImage.src = data.link;
+  cardImage.alt = data.name;
+  preCard.querySelector('.element__text').textContent = data.name;
+  preCard.querySelector('.element__trash').addEventListener('click', deleteCard);
+  preCard.querySelector('.element__reaction').addEventListener('click', (evt) => toggleLike(evt.target));
+  cardImage.addEventListener('click', (data) => openPicture(data.target));
+  return preCard;
+};
+
+function addCard(data) {
+  elements.prepend(createCard(data));
+};
+
+function deleteCard(evt) {
+  evt.target.closest('.element').remove();
+};
+
+function openPicture(data) {
+  openPopup(picture);
+  pictureImage.src = data.src;
+  pictureFigcaption.textContent = data.alt;
+  pictureImage.alt = `На фото: ${data.alt}`;
+};
+
+function toggleLike(reactionIcon) {
+  reactionIcon.classList.toggle('element__reaction_like');
+};
+
+cards.forEach(function (data) {
+  addCard(data);
+});
 
 profileEditButton.addEventListener('click', () => {
   userNameInput.value = userName.textContent;
@@ -108,41 +143,6 @@ cardFormInput.addEventListener('submit', (evt) => {
   closePopup(cardCreator);
 });
 
-cards.forEach(function (data) {
-  addCard(data);
-});
-
-function createCard(data) {
-  const preCard = cardTemplate.cloneNode(true);
-  const cardImage = preCard.querySelector('.element__image');
-  cardImage.src = data.link;
-  cardImage.alt = data.name;
-  preCard.querySelector('.element__text').textContent = data.name;
-  preCard.querySelector('.element__trash').addEventListener('click', deleteCard);
-  preCard.querySelector('.element__reaction').addEventListener('click', (evt) => toggleLike(evt.target));
-  cardImage.addEventListener('click', (data) => openPicture(data.target));
-  return preCard;
-};
-
-function addCard(data) {
-  elements.prepend(createCard(data));
-};
-
-function deleteCard(evt) {
-  evt.target.closest('.element').remove();
-};
-
-function openPicture(data) {
-  openPopup(picture);
-  pictureImage.src = data.src;
-  pictureFigcaption.textContent = data.alt;
-  pictureImage.alt = `На фото: ${data.alt}`;
-};
-
 pictureCloseButton.addEventListener('click', () => {
   closePopup(picture);
 });
-
-function toggleLike(reactionIcon) {
-  reactionIcon.classList.toggle('element__reaction_like');
-};

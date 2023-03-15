@@ -23,9 +23,11 @@ const toggleButtonState = (inputList, submitButton, inactiveButtonClass) => {
 };
 
 const checkFormValidity = (elem) => {
-  const inputList = Array.from(elem.querySelectorAll(validationConfig.inputSelector));
-  const submitButton = elem.querySelector(validationConfig.submitButtonSelector);
-  toggleButtonState(inputList, submitButton, validationConfig.inactiveButtonClass)
+  if (!elem.classList.contains('popup_picture_opened')) {
+    const inputList = Array.from(elem.querySelectorAll(validationConfig.inputSelector));
+    const submitButton = elem.querySelector(validationConfig.submitButtonSelector);
+    toggleButtonState(inputList, submitButton, validationConfig.inactiveButtonClass);
+  };
 };
 
 const disableSubmitButton = (submitButton, inactiveButtonClass) => {
