@@ -23,8 +23,24 @@ const pictureImage = document.querySelector('.popup__image');
 const pictureFigcaption = document.querySelector('.popup__figcaption');
 const pictureCloseButton = document.querySelector('.popup__close-button_picture_close');
 
+const hideErrorText = (errorText) => {
+  errorText.textContent = '';
+  errorText.classList.remove('popup__input-error_active');
+};
+
+const removeErrorShow = (elem) => {
+  const ErrorInputList = Array.from(elem.querySelectorAll('.popup__input'));
+  const ErrorTextList = Array.from(elem.querySelectorAll('.popup__input-error'));
+  ErrorTextList.forEach((errorText) => {
+    hideErrorText(errorText);
+  });
+  ErrorInputList.forEach((ErrorInput) => {
+    ErrorInput.classList.remove('popup__input_type_error');
+  });
+};
+
 const checkEscape = (event) => {
-  if (event.key == 'Escape') {
+  if (event.key === 'Escape') {
     closePopup(document.querySelector('.popup_opened'));
   };
 };
@@ -38,7 +54,7 @@ const checkClickTarget = (event) => {
 };
 
 const closeTargetPopup = (popupContainer, activePopup) => {
-  if (popupContainer == null) {
+  if (popupContainer === null) {
     closePopup(activePopup);
   };
 };
@@ -47,12 +63,14 @@ function openPopup(elem) {
   elem.classList.add('popup_opened');
   document.addEventListener('click', checkClickTarget);
   document.addEventListener('keydown', checkEscape);
+  removeErrorShow(elem);
 };
 
 function closePopup(elem) {
   elem.classList.remove('popup_opened');
   document.removeEventListener('click', checkClickTarget);
   document.removeEventListener('keydown', checkEscape);
+  cardCreatorForm.reset();
 };
 
 profileEditButton.addEventListener('click', () => {
@@ -73,15 +91,6 @@ profileFormInput.addEventListener('submit', (evt) => {
 });
 
 addButton.addEventListener('click', () => {
-  enableValidation({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    errorClassTemplate: '-error',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__input-error_active',
-    submitButtonSelector: '.popup__save-button',
-    inactiveButtonClass: 'popup__save-button_disabled',
-  });
   openPopup(cardCreator);
 });
 
@@ -116,7 +125,7 @@ function createCard(data) {
 
 function addCard(data) {
   elements.prepend(createCard(data));
-  cardCreatorForm.reset();
+  // cardCreatorForm.reset();
 };
 
 function deleteCard(evt) {

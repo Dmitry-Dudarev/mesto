@@ -1,3 +1,15 @@
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  errorClassTemplate: '-error',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+};
+
+
+
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
@@ -47,6 +59,7 @@ const setEventListeners = (formElement, inputSelector, errorClassTemplate, input
   const submitButton = formElement.querySelector(submitButtonSelector);
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
   toggleButtonState(inputList, submitButton, inactiveButtonClass);
+
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       checkInputValidity(formElement, inputElement, errorClassTemplate, inputErrorClass, errorClass, submitButton);
@@ -70,4 +83,5 @@ enableValidation({
   errorClass: 'popup__input-error_active',
   submitButtonSelector: '.popup__save-button',
   inactiveButtonClass: 'popup__save-button_disabled',
-}); 
+});
+
