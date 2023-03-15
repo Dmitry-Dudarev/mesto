@@ -22,6 +22,12 @@ const toggleButtonState = (inputList, submitButton, inactiveButtonClass) => {
   };
 };
 
+const checkFormValidity = (elem) => {
+  const inputList = Array.from(elem.querySelectorAll(validationConfig.inputSelector));
+  const submitButton = elem.querySelector(validationConfig.submitButtonSelector);
+  toggleButtonState(inputList, submitButton, validationConfig.inactiveButtonClass)
+};
+
 const disableSubmitButton = (submitButton, inactiveButtonClass) => {
   submitButton.classList.add(inactiveButtonClass);
   submitButton.setAttribute('disabled', 'true');

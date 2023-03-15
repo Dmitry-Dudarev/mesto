@@ -28,7 +28,7 @@ const hideErrorText = (errorText) => {
   errorText.classList.remove('popup__input-error_active');
 };
 
-const removeErrorShow = (elem) => {
+const removeErrorMessage = (elem) => {
   const ErrorInputList = Array.from(elem.querySelectorAll('.popup__input'));
   const ErrorTextList = Array.from(elem.querySelectorAll('.popup__input-error'));
   ErrorTextList.forEach((errorText) => {
@@ -61,9 +61,10 @@ const closeTargetPopup = (popupContainer, activePopup) => {
 
 function openPopup(elem) {
   elem.classList.add('popup_opened');
+  removeErrorMessage(elem);
+  checkFormValidity(elem);
   document.addEventListener('click', checkClickTarget);
   document.addEventListener('keydown', checkEscape);
-  removeErrorShow(elem);
 };
 
 function closePopup(elem) {
