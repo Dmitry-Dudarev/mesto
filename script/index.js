@@ -118,14 +118,13 @@ function createCard(data) {
   cardImage.alt = data.name;
   preCard.querySelector('.element__text').textContent = data.name;
   preCard.querySelector('.element__trash').addEventListener('click', deleteCard);
-  preCard.querySelector('.element__reaction').addEventListener('click', (evt) => reactToACard(evt.target));
+  preCard.querySelector('.element__reaction').addEventListener('click', (evt) => toggleLike(evt.target));
   cardImage.addEventListener('click', (data) => openPicture(data.target));
   return preCard;
 };
 
 function addCard(data) {
   elements.prepend(createCard(data));
-  // cardCreatorForm.reset();
 };
 
 function deleteCard(evt) {
@@ -143,6 +142,6 @@ pictureCloseButton.addEventListener('click', () => {
   closePopup(picture);
 });
 
-function reactToACard(reactionIcon) {
+function toggleLike(reactionIcon) {
   reactionIcon.classList.toggle('element__reaction_like');
 };

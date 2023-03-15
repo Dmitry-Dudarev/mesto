@@ -8,8 +8,6 @@ const validationConfig = {
   inactiveButtonClass: 'popup__save-button_disabled',
 };
 
-
-
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
@@ -75,13 +73,5 @@ function enableValidation(config) {
   });
 };
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  errorClassTemplate: '-error',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_active',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_disabled',
-});
+enableValidation(validationConfig);
 
