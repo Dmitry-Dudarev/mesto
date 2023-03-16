@@ -45,7 +45,6 @@ const closeTargetPopup = (popupContainer, activePopup) => {
 
 function openPopup(elem) {
   elem.classList.add('popup_opened');
-  removeErrorMessage(elem);
   checkFormValidity(elem);
   document.addEventListener('click', checkClickTarget);
   document.addEventListener('keydown', checkEscape);
@@ -97,6 +96,7 @@ profileEditButton.addEventListener('click', () => {
   userNameInput.value = userName.textContent;
   userCareerInput.value = aboutUser.textContent;
   openPopup(profileForm);
+  removeErrorMessage(profileForm);
 });
 
 profileFormCloseButton.addEventListener('click', () => {
@@ -112,6 +112,7 @@ profileFormInput.addEventListener('submit', (evt) => {
 
 addButton.addEventListener('click', () => {
   openPopup(cardCreator);
+  removeErrorMessage(cardCreator);
 });
 
 cardCreatorCloseButton.addEventListener('click', () => {
