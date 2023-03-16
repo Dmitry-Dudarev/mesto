@@ -52,6 +52,14 @@ const hideInputError = (formElement, inputElement, errorElement, inputErrorClass
   errorElement.textContent = '';
 };
 
+const removeErrorMessage = (form) => {
+  const errorInputList = Array.from(form.querySelectorAll(validationConfig.inputSelector));
+  errorInputList.forEach((inputElement) => {
+    const errorElement = form.querySelector(`.${inputElement.name}${validationConfig.errorClassTemplate}`);
+    hideInputError (form, inputElement, errorElement, validationConfig.inputErrorClass, validationConfig.errorClass);
+  });
+};
+
 const checkInputValidity = (formElement, inputElement, errorClassTemplate, inputErrorClass, errorClass, submitButton) => {
   const errorElement = formElement.querySelector(`.${inputElement.name}${errorClassTemplate}`);
   if (!inputElement.validity.valid) {
@@ -82,11 +90,3 @@ function enableValidation(config) {
 };
 
 enableValidation(validationConfig);
-
-const removeErrorMessage = (form) => {
-  const errorInputList = Array.from(form.querySelectorAll(validationConfig.inputSelector));
-  errorInputList.forEach((inputElement) => {
-    const errorElement = form.querySelector(`.${inputElement.name}${validationConfig.errorClassTemplate}`);
-    hideInputError (form, inputElement, errorElement, validationConfig.inputErrorClass, validationConfig.errorClass);
-  });
-};
