@@ -23,22 +23,6 @@ const pictureImage = document.querySelector('.popup__image');
 const pictureFigcaption = document.querySelector('.popup__figcaption');
 const pictureCloseButton = document.querySelector('.popup__close-button_picture_close');
 
-const hideErrorText = (errorText) => {
-  errorText.textContent = '';
-  errorText.classList.remove('popup__input-error_active');
-};
-
-const removeErrorMessage = (elem) => {
-  const ErrorInputList = Array.from(elem.querySelectorAll('.popup__input'));
-  const ErrorTextList = Array.from(elem.querySelectorAll('.popup__input-error'));
-  ErrorTextList.forEach((errorText) => {
-    hideErrorText(errorText);
-  });
-  ErrorInputList.forEach((ErrorInput) => {
-    ErrorInput.classList.remove('popup__input_type_error');
-  });
-};
-
 const checkEscape = (event) => {
   if (event.key === 'Escape') {
     closePopup(document.querySelector('.popup_opened'));
