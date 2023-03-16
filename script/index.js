@@ -45,7 +45,6 @@ const closeTargetPopup = (popupContainer, activePopup) => {
 
 function openPopup(elem) {
   elem.classList.add('popup_opened');
-  // checkFormValidity(elem);
   document.addEventListener('click', checkClickTarget);
   document.addEventListener('keydown', checkEscape);
 };
