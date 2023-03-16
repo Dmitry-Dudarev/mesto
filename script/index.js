@@ -52,7 +52,6 @@ function openPopup(elem) {
 
 function closePopup(elem) {
   elem.classList.remove('popup_opened');
-  cardCreatorForm.reset();
   document.removeEventListener('click', checkClickTarget);
   document.removeEventListener('keydown', checkEscape);
 };
@@ -112,6 +111,7 @@ profileFormInput.addEventListener('submit', (evt) => {
 
 addButton.addEventListener('click', () => {
   openPopup(cardCreator);
+  cardCreatorForm.reset();
   removeErrorMessage(cardCreator);
 });
 
