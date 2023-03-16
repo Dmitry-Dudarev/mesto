@@ -23,11 +23,9 @@ const toggleButtonState = (inputList, submitButton, inactiveButtonClass) => {
 };
 
 const checkFormValidity = (elem) => {
-  if (!elem.classList.contains('popup_picture_opened')) {
-    const inputList = Array.from(elem.querySelectorAll(validationConfig.inputSelector));
-    const submitButton = elem.querySelector(validationConfig.submitButtonSelector);
-    toggleButtonState(inputList, submitButton, validationConfig.inactiveButtonClass);
-  };
+  const inputList = Array.from(elem.querySelectorAll(validationConfig.inputSelector));
+  const submitButton = elem.querySelector(validationConfig.submitButtonSelector);
+  toggleButtonState(inputList, submitButton, validationConfig.inactiveButtonClass);
 };
 
 const disableSubmitButton = (submitButton, inactiveButtonClass) => {
@@ -56,7 +54,7 @@ const removeErrorMessage = (form) => {
   const errorInputList = Array.from(form.querySelectorAll(validationConfig.inputSelector));
   errorInputList.forEach((inputElement) => {
     const errorElement = form.querySelector(`.${inputElement.name}${validationConfig.errorClassTemplate}`);
-    hideInputError (form, inputElement, errorElement, validationConfig.inputErrorClass, validationConfig.errorClass);
+    hideInputError(form, inputElement, errorElement, validationConfig.inputErrorClass, validationConfig.errorClass);
   });
 };
 
