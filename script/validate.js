@@ -58,7 +58,7 @@ const checkInputValidity = (formElement, inputElement, errorClassTemplate, input
     showInputError(formElement, inputElement, inputElement.validationMessage, errorElement, inputErrorClass, errorClass, submitButton);
   } else {
     hideInputError(formElement, inputElement, errorElement, inputErrorClass, errorClass, submitButton);
-  }
+  };
 };
 
 const setEventListeners = (formElement, inputSelector, errorClassTemplate, inputErrorClass, errorClass, submitButtonSelector, inactiveButtonClass) => {
@@ -70,7 +70,7 @@ const setEventListeners = (formElement, inputSelector, errorClassTemplate, input
     inputElement.addEventListener('input', () => {
       checkInputValidity(formElement, inputElement, errorClassTemplate, inputErrorClass, errorClass, submitButton);
       toggleButtonState(inputList, submitButton, inactiveButtonClass);
-    })
+    });
   });
 };
 
