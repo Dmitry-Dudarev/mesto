@@ -5,14 +5,14 @@ const userName = document.querySelector('.profile__username');
 const aboutUser = document.querySelector('.profile__aboutuser');
 const profileEditButton = document.querySelector('.profile__editbutton');
 const popup = document.querySelector('.popup');
-const cardTemplate = document.querySelector('.cardTemplate').content;
-const savePopupButton = document.querySelector('.popup__save-button');
+// const cardTemplate = document.querySelector('.cardTemplate').content;
+// const savePopupButton = document.querySelector('.popup__save-button');
 const profileForm = document.querySelector('.profile-form');
 const cardCreator = document.querySelector('.card-creator');
 const cardCreatorForm = document.querySelector('.card-creator__input');
 const profileFormInput = document.querySelector('.profile-form__input');
 const cardFormInput = document.querySelector('.card-creator__input');
-const saveProfileForm = document.querySelector('.profile-form__save-button');
+// const saveProfileForm = document.querySelector('.profile-form__save-button');
 const userNameInput = document.querySelector('.profile-form__name');
 const userCareerInput = document.querySelector('.profile-form__career');
 const profileFormCloseButton = document.querySelector('.profile-form__close-button');
@@ -81,27 +81,12 @@ function closePopup(elem) {
 //   elements.prepend(createCard(data));
 // };
 
-
-
-// Функция содержится в классе Card
-
-// function deleteCard(evt) {
-//   evt.target.closest('.element').remove();
-// };
-
 function openPicture(data) {
   openPopup(picture);
   pictureImage.src = data.src;
   pictureFigcaption.textContent = data.alt;
   pictureImage.alt = `На фото: ${data.alt}`;
 };
-
-
-// Функция находится внутри класса Class
-
-// function toggleLike(reactionIcon) {
-//   reactionIcon.classList.toggle('element__reaction_like');
-// };
 
 cards.forEach(function (data) {
   addCard(data);
@@ -150,17 +135,9 @@ pictureCloseButton.addEventListener('click', () => {
   closePopup(picture);
 });
 
-
-
-
-
-
 //code nuvo
 
 function addCard(data) {
   new Card(data, '.cardTemplate', openPicture)
   elements.prepend(new Card(data, '.cardTemplate', openPicture).getCardElement());
 };
-
-
-//
