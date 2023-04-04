@@ -1,3 +1,6 @@
+import { cards } from "./cards.js";
+import { Card } from "./Card.js";
+
 const userName = document.querySelector('.profile__username');
 const aboutUser = document.querySelector('.profile__aboutuser');
 const profileEditButton = document.querySelector('.profile__editbutton');
@@ -55,25 +58,36 @@ function closePopup(elem) {
   document.removeEventListener('keydown', checkEscape);
 };
 
-function createCard(data) {
-  const preCard = cardTemplate.cloneNode(true);
-  const cardImage = preCard.querySelector('.element__image');
-  cardImage.src = data.link;
-  cardImage.alt = data.name;
-  preCard.querySelector('.element__text').textContent = data.name;
-  preCard.querySelector('.element__trash').addEventListener('click', deleteCard);
-  preCard.querySelector('.element__reaction').addEventListener('click', (evt) => toggleLike(evt.target));
-  cardImage.addEventListener('click', (data) => openPicture(data.target));
-  return preCard;
-};
 
-function addCard(data) {
-  elements.prepend(createCard(data));
-};
+// Функция содержится в классе Card
 
-function deleteCard(evt) {
-  evt.target.closest('.element').remove();
-};
+// function createCard(data) {
+//   const preCard = cardTemplate.cloneNode(true);
+//   const cardImage = preCard.querySelector('.element__image');
+//   cardImage.src = data.link;
+//   cardImage.alt = data.name;
+//   preCard.querySelector('.element__text').textContent = data.name;
+//   preCard.querySelector('.element__trash').addEventListener('click', deleteCard);
+//   preCard.querySelector('.element__reaction').addEventListener('click', (evt) => toggleLike(evt.target));
+//   cardImage.addEventListener('click', (data) => openPicture(data.target));
+//   return preCard;
+// };
+
+
+
+// функция на переработке под новый класс
+
+// function addCard(data) {
+//   elements.prepend(createCard(data));
+// };
+
+
+
+// Функция содержится в классе Card
+
+// function deleteCard(evt) {
+//   evt.target.closest('.element').remove();
+// };
 
 function openPicture(data) {
   openPopup(picture);
@@ -82,9 +96,12 @@ function openPicture(data) {
   pictureImage.alt = `На фото: ${data.alt}`;
 };
 
-function toggleLike(reactionIcon) {
-  reactionIcon.classList.toggle('element__reaction_like');
-};
+
+// Функция находится внутри класса Class
+
+// function toggleLike(reactionIcon) {
+//   reactionIcon.classList.toggle('element__reaction_like');
+// };
 
 cards.forEach(function (data) {
   addCard(data);
@@ -132,3 +149,18 @@ cardFormInput.addEventListener('submit', (evt) => {
 pictureCloseButton.addEventListener('click', () => {
   closePopup(picture);
 });
+
+
+
+
+
+
+//code nuvo
+
+function addCard(data) {
+  new Card(data, '.cardTemplate', openPicture)
+  elements.prepend(new Card(data, '.cardTemplate', openPicture).getCardElement());
+};
+
+
+//

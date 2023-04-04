@@ -1,4 +1,4 @@
-const cards = [
+export const cards = [
   {
     name: 'Волга',
     link: 'images/element__volga_fedor-shlyapnikov.jpg',
