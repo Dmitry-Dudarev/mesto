@@ -1,22 +1,17 @@
 import { cards } from "./cards.js";
 import { Card } from "./Card.js";
-import { FormValidator} from "./FormValidator.js";
+import { FormValidator } from "./FormValidator.js";
 
 const userName = document.querySelector('.profile__username');
 const aboutUser = document.querySelector('.profile__aboutuser');
 const profileEditButton = document.querySelector('.profile__editbutton');
-// const popup = document.querySelector('.popup');
-// const cardTemplate = document.querySelector('.cardTemplate').content;
-// const savePopupButton = document.querySelector('.popup__save-button');
-const profileForm = document.querySelector('.profile-form');
+const profilePopup = document.querySelector('.profile-form');
 const cardCreator = document.querySelector('.card-creator');
 const cardCreatorForm = document.querySelector('.card-creator__input');
-const profileFormInput = document.querySelector('.profile-form__input');
-// const cardFormInput = document.querySelector('.card-creator__input');
-// const saveProfileForm = document.querySelector('.profile-form__save-button');
+const profileForm = document.querySelector('.profile-form__input');
 const userNameInput = document.querySelector('.profile-form__name');
 const userCareerInput = document.querySelector('.profile-form__career');
-const profileFormCloseButton = document.querySelector('.profile-form__close-button');
+const profilePopupCloseButton = document.querySelector('.profile-form__close-button');
 const cardCreatorCloseButton = document.querySelector('.card-creator__close-button');
 const cardName = document.querySelector('.card-creator__name');
 const cardLink = document.querySelector('.card-creator__link');
@@ -40,8 +35,8 @@ const validationConfig = {
 const cardCreatorFormValidator = new FormValidator(validationConfig, cardCreatorForm);
 cardCreatorFormValidator.enableValidation();
 
-const profileFormInputValidator = new FormValidator(validationConfig, profileFormInput);
-profileFormInputValidator.enableValidation();
+const profilePopupInputValidator = new FormValidator(validationConfig, profileForm);
+profilePopupInputValidator.enableValidation();
 
 const checkEscape = (event) => {
   if (event.key === 'Escape') {
@@ -76,7 +71,6 @@ function closePopup(elem) {
 };
 
 function addCard(data) {
-  new Card(data, '.cardTemplate', openPicture)
   elements.prepend(new Card(data, '.cardTemplate', openPicture).getCardElement());
 };
 
@@ -87,26 +81,26 @@ function openPicture(data) {
   pictureImage.alt = `На фото: ${data.alt}`;
 };
 
-cards.forEach(function (data) {
+cards.forEach((data) => {
   addCard(data);
 });
 
 profileEditButton.addEventListener('click', () => {
   userNameInput.value = userName.textContent;
   userCareerInput.value = aboutUser.textContent;
-  openPopup(profileForm);
-  profileFormInputValidator.enableValidation();
+  openPopup(profilePopup);
+  profilePopupInputValidator.enableValidation();
 });
 
-profileFormCloseButton.addEventListener('click', () => {
-  closePopup(profileForm);
+profilePopupCloseButton.addEventListener('click', () => {
+  closePopup(profilePopup);
 });
 
-profileFormInput.addEventListener('submit', (evt) => {
+profileForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   userName.textContent = userNameInput.value;
   aboutUser.textContent = userCareerInput.value;
-  closePopup(profileForm);
+  closePopup(profilePopup);
 });
 
 addButton.addEventListener('click', () => {
