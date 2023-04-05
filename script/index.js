@@ -160,3 +160,5 @@ const form = document.querySelector('.card-creator__input');
 
 
 const a = new FormValidator(validationConfig, form)
+a.a()
+a.enableValidation()
