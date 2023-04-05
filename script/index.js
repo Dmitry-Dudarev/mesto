@@ -1,5 +1,6 @@
 import { cards } from "./cards.js";
 import { Card } from "./Card.js";
+import { FormValidator} from "./FormValidator.js";
 
 const userName = document.querySelector('.profile__username');
 const aboutUser = document.querySelector('.profile__aboutuser');
@@ -135,9 +136,27 @@ pictureCloseButton.addEventListener('click', () => {
   closePopup(picture);
 });
 
-//code nuvo
+//code nuvo Card
 
 function addCard(data) {
   new Card(data, '.cardTemplate', openPicture)
   elements.prepend(new Card(data, '.cardTemplate', openPicture).getCardElement());
 };
+
+
+// code nuvo Validation
+
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  errorClassTemplate: '-error',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+};
+
+const form = document.querySelector('.card-creator__input');
+
+
+const a = new FormValidator(validationConfig, form)

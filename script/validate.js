@@ -1,12 +1,15 @@
-const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  errorClassTemplate: '-error',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_active',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_disabled',
-};
+// объект перенесен в index.js
+
+// const validationConfig = {
+//   formSelector: '.popup__form',
+//   inputSelector: '.popup__input',
+//   errorClassTemplate: '-error',
+//   inputErrorClass: 'popup__input_type_error',
+//   errorClass: 'popup__input-error_active',
+//   submitButtonSelector: '.popup__save-button',
+//   inactiveButtonClass: 'popup__save-button_disabled',
+// };
+
 
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
@@ -40,6 +43,7 @@ const enableSubmitButton = (submitButton, inactiveButtonClass) => {
 
 const showInputError = (formElement, inputElement, errorMessage, errorElement, inputErrorClass, errorClass, submitButton) => {
   inputElement.classList.add(inputErrorClass);
+  
   errorElement.textContent = errorMessage;
   errorElement.classList.add(errorClass);
 };
@@ -70,6 +74,7 @@ const checkInputValidity = (formElement, inputElement, errorClassTemplate, input
 const setEventListeners = (formElement, inputSelector, errorClassTemplate, inputErrorClass, errorClass, submitButtonSelector, inactiveButtonClass) => {
   const submitButton = formElement.querySelector(submitButtonSelector);
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
+
   toggleButtonState(inputList, submitButton, inactiveButtonClass);
 
   inputList.forEach((inputElement) => {
@@ -88,3 +93,10 @@ function enableValidation(config) {
 };
 
 enableValidation(validationConfig);
+
+
+//checker function
+function с (data) {
+  console.log(typeof(data));
+  console.log(data)
+}
