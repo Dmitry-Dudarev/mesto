@@ -30,7 +30,6 @@ const validationConfig = {
   errorClass: 'popup__input-error_active',
   submitButtonSelector: '.popup__save-button',
   inactiveButtonClass: 'popup__save-button_disabled',
-  inputEventListenerAddedClass: 'popup__input_event-listener-added',
 };
 
 const cardCreatorFormValidator = new FormValidator(validationConfig, cardCreatorForm);
@@ -90,7 +89,7 @@ profileEditButton.addEventListener('click', () => {
   userNameInput.value = userName.textContent;
   userCareerInput.value = aboutUser.textContent;
   openPopup(profilePopup);
-  profilePopupInputValidator.enableValidation();
+  profilePopupInputValidator.hideErrorMessagesAndCheckButtonState();
 });
 
 profilePopupCloseButton.addEventListener('click', () => {
@@ -107,7 +106,7 @@ profileForm.addEventListener('submit', (evt) => {
 addButton.addEventListener('click', () => {
   openPopup(cardCreator);
   cardCreatorForm.reset();
-  cardCreatorFormValidator.enableValidation()
+  cardCreatorFormValidator.hideErrorMessagesAndCheckButtonState();
 });
 
 cardCreatorCloseButton.addEventListener('click', () => {

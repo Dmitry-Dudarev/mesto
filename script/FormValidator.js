@@ -8,25 +8,15 @@ export class FormValidator {
     this._errorClassTemplate = config.errorClassTemplate;
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
-    this._inputEventListenerAddedClass = config.inputEventListenerAddedClass;
   }
 
   enableValidation() {
     this._toggleButtonState();
-    if (this._checkInputHasEventListener()) {
-      this._hideErrorMessages();
-    } else {
-      this._setEventListeners();
-    };
+    this._setEventListeners();
   }
 
-  _checkInputHasEventListener() {
-    return this._inputList.some(inputElement => {
-      return inputElement.classList.contains(this._inputEventListenerAddedClass);
-    });
-  }
-
-  _hideErrorMessages() {
+  hideErrorMessagesAndCheckButtonState() {
+    this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
       const errorElement = this._form.querySelector(`.${inputElement.name}${this._errorClassTemplate}`);
       this._hideInputError(inputElement, errorElement);
