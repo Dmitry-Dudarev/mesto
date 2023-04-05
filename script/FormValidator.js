@@ -9,15 +9,55 @@ export class FormValidator {
     this._errorClass = config.errorClass;
   }
 
+
   enableValidation() {
     const submitButton = this._form.querySelector(this._submitButtonSelector);
     const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
     this._toggleButtonState(inputList, submitButton);
-    this._setEventListeners(inputList, submitButton);
+      if(this._checkInputHasEventListener(inputList)){
+        console.log('lite check')
+        this._hideErrorMessage(inputList)
+      }else{
+        console.log('full check')
+        this._setEventListeners(inputList, submitButton);
+      }
   }
+
+  _checkInputHasEventListener(inputList){
+    return inputList.some(inputElement => {
+      return inputElement.classList.contains('popup__input_event-listener-added');
+    })
+  }
+
+  _hideErrorMessage(inputList) {
+    inputList.forEach((inputElement) => {
+      const errorElement = this._form
+      .querySelector(`.${inputElement.name}${this._errorClassTemplate}`);
+      this._hideInputError(inputElement, errorElement);
+    })
+  }
+
+
+
+
+
+
+
+
+
+  // enableValidation() {
+  //   const submitButton = this._form.querySelector(this._submitButtonSelector);
+  //   const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
+  //   this._toggleButtonState(inputList, submitButton);
+  //   this._setEventListeners(inputList, submitButton);
+  // }
 
   _setEventListeners(inputList, submitButton) {
     inputList.forEach((inputElement) => {
+
+      //навестим маркер
+      inputElement.classList.add('popup__input_event-listener-added');
+
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
         this._toggleButtonState(inputList, submitButton);

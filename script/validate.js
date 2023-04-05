@@ -92,7 +92,7 @@ function enableValidation(config) {
   });
 };
 
-enableValidation(validationConfig);
+// enableValidation(validationConfig);
 
 
 //checker function

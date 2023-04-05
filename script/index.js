@@ -5,14 +5,14 @@ import { FormValidator} from "./FormValidator.js";
 const userName = document.querySelector('.profile__username');
 const aboutUser = document.querySelector('.profile__aboutuser');
 const profileEditButton = document.querySelector('.profile__editbutton');
-const popup = document.querySelector('.popup');
+// const popup = document.querySelector('.popup');
 // const cardTemplate = document.querySelector('.cardTemplate').content;
 // const savePopupButton = document.querySelector('.popup__save-button');
 const profileForm = document.querySelector('.profile-form');
 const cardCreator = document.querySelector('.card-creator');
 const cardCreatorForm = document.querySelector('.card-creator__input');
 const profileFormInput = document.querySelector('.profile-form__input');
-const cardFormInput = document.querySelector('.card-creator__input');
+// const cardFormInput = document.querySelector('.card-creator__input');
 // const saveProfileForm = document.querySelector('.profile-form__save-button');
 const userNameInput = document.querySelector('.profile-form__name');
 const userCareerInput = document.querySelector('.profile-form__career');
@@ -26,6 +26,22 @@ const picture = document.querySelector('.popup_picture_opened');
 const pictureImage = document.querySelector('.popup__image');
 const pictureFigcaption = document.querySelector('.popup__figcaption');
 const pictureCloseButton = document.querySelector('.popup__close-button_picture_close');
+
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  errorClassTemplate: '-error',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+};
+
+const cardCreatorFormValidator = new FormValidator(validationConfig, cardCreatorForm);
+cardCreatorFormValidator.enableValidation();
+
+const profileFormInputValidator = new FormValidator(validationConfig, profileFormInput);
+profileFormInputValidator.enableValidation();
 
 const checkEscape = (event) => {
   if (event.key === 'Escape') {
@@ -59,28 +75,10 @@ function closePopup(elem) {
   document.removeEventListener('keydown', checkEscape);
 };
 
-
-// Функция содержится в классе Card
-
-// function createCard(data) {
-//   const preCard = cardTemplate.cloneNode(true);
-//   const cardImage = preCard.querySelector('.element__image');
-//   cardImage.src = data.link;
-//   cardImage.alt = data.name;
-//   preCard.querySelector('.element__text').textContent = data.name;
-//   preCard.querySelector('.element__trash').addEventListener('click', deleteCard);
-//   preCard.querySelector('.element__reaction').addEventListener('click', (evt) => toggleLike(evt.target));
-//   cardImage.addEventListener('click', (data) => openPicture(data.target));
-//   return preCard;
-// };
-
-
-
-// функция на переработке под новый класс
-
-// function addCard(data) {
-//   elements.prepend(createCard(data));
-// };
+function addCard(data) {
+  new Card(data, '.cardTemplate', openPicture)
+  elements.prepend(new Card(data, '.cardTemplate', openPicture).getCardElement());
+};
 
 function openPicture(data) {
   openPopup(picture);
@@ -97,8 +95,7 @@ profileEditButton.addEventListener('click', () => {
   userNameInput.value = userName.textContent;
   userCareerInput.value = aboutUser.textContent;
   openPopup(profileForm);
-  checkFormValidity(profileForm);
-  removeErrorMessage(profileForm);
+  profileFormInputValidator.enableValidation();
 });
 
 profileFormCloseButton.addEventListener('click', () => {
@@ -115,15 +112,14 @@ profileFormInput.addEventListener('submit', (evt) => {
 addButton.addEventListener('click', () => {
   openPopup(cardCreator);
   cardCreatorForm.reset();
-  checkFormValidity(cardCreator);
-  removeErrorMessage(cardCreator);
+  cardCreatorFormValidator.enableValidation()
 });
 
 cardCreatorCloseButton.addEventListener('click', () => {
   closePopup(cardCreator);
 });
 
-cardFormInput.addEventListener('submit', (evt) => {
+cardCreatorForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const data = {};
   data.name = cardName.value;
@@ -135,30 +131,3 @@ cardFormInput.addEventListener('submit', (evt) => {
 pictureCloseButton.addEventListener('click', () => {
   closePopup(picture);
 });
-
-//code nuvo Card
-
-function addCard(data) {
-  new Card(data, '.cardTemplate', openPicture)
-  elements.prepend(new Card(data, '.cardTemplate', openPicture).getCardElement());
-};
-
-
-// code nuvo Validation
-
-const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  errorClassTemplate: '-error',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_active',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_disabled',
-};
-
-const form = document.querySelector('.card-creator__input');
-
-
-const a = new FormValidator(validationConfig, form)
-a.a()
-a.enableValidation()
