@@ -30,6 +30,7 @@ const validationConfig = {
   errorClass: 'popup__input-error_active',
   submitButtonSelector: '.popup__save-button',
   inactiveButtonClass: 'popup__save-button_disabled',
+  inputEventListenerAddedClass: 'popup__input_event-listener-added',
 };
 
 const cardCreatorFormValidator = new FormValidator(validationConfig, cardCreatorForm);

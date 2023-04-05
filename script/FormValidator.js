@@ -7,57 +7,36 @@ export class FormValidator {
     this._errorClassTemplate = config.errorClassTemplate;
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
+    this._inputEventListenerAddedClass = config.inputEventListenerAddedClass;
   }
-
 
   enableValidation() {
     const submitButton = this._form.querySelector(this._submitButtonSelector);
     const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
     this._toggleButtonState(inputList, submitButton);
-      if(this._checkInputHasEventListener(inputList)){
-        console.log('lite check')
-        this._hideErrorMessage(inputList)
-      }else{
-        console.log('full check')
-        this._setEventListeners(inputList, submitButton);
-      }
+    if (this._checkInputHasEventListener(inputList)) {
+      this._hideErrorMessages(inputList);
+    } else {
+      this._setEventListeners(inputList, submitButton);
+    };
   }
 
-  _checkInputHasEventListener(inputList){
+  _checkInputHasEventListener(inputList) {
     return inputList.some(inputElement => {
-      return inputElement.classList.contains('popup__input_event-listener-added');
-    })
+      return inputElement.classList.contains(this._inputEventListenerAddedClass);
+    });
   }
 
-  _hideErrorMessage(inputList) {
+  _hideErrorMessages(inputList) {
     inputList.forEach((inputElement) => {
-      const errorElement = this._form
-      .querySelector(`.${inputElement.name}${this._errorClassTemplate}`);
+      const errorElement = this._form.querySelector(`.${inputElement.name}${this._errorClassTemplate}`);
       this._hideInputError(inputElement, errorElement);
-    })
+    });
   }
-
-
-
-
-
-
-
-
-
-  // enableValidation() {
-  //   const submitButton = this._form.querySelector(this._submitButtonSelector);
-  //   const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
-  //   this._toggleButtonState(inputList, submitButton);
-  //   this._setEventListeners(inputList, submitButton);
-  // }
 
   _setEventListeners(inputList, submitButton) {
     inputList.forEach((inputElement) => {
-
-      //навестим маркер
-      inputElement.classList.add('popup__input_event-listener-added');
-
+      inputElement.classList.add(this._inputEventListenerAddedClass);
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
         this._toggleButtonState(inputList, submitButton);
@@ -66,9 +45,7 @@ export class FormValidator {
   }
 
   _checkInputValidity(inputElement) {
-    const errorElement = this._form
-      .querySelector(`.${inputElement.name}${this._errorClassTemplate}`);
-
+    const errorElement = this._form.querySelector(`.${inputElement.name}${this._errorClassTemplate}`);
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement, errorElement);
     } else {
