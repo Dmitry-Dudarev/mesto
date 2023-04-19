@@ -1,0 +1,19 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "*Проектная работа в рамках прохождения обучения на курсе \"Яндекс.Практикум\"*",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dmitry-Dudarev/mesto.git"
+  },
+  "author": "Dmitry_Dudarev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dmitry-Dudarev/mesto/issues"
+  },
+  "homepage": "https://github.com/Dmitry-Dudarev/mesto#readme"
+}
