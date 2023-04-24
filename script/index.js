@@ -6,31 +6,12 @@ import { PopupWithImage } from "./PopupWithImage.js";
 import { PopupWithForm } from "./PopupWithForm.js";
 import { UserInfo } from "./UserInfo.js";
 
-
-// const userName = document.querySelector('.profile__username');
-// const aboutUser = document.querySelector('.profile__aboutuser');
 const profileEditButton = document.querySelector('.profile__editbutton');
-// const profilePopup = document.querySelector('.profile-form');
-// const cardCreator = document.querySelector('.card-creator');
 const cardCreatorForm = document.querySelector('.card-creator__input');
-// не все так просто! попап с формой один а формы две!
 const profileForm = document.querySelector('.profile-form__input');
 const userNameInput = document.querySelector('.profile-form__name');
 const userCareerInput = document.querySelector('.profile-form__career');
-//кнопка тут наверно не нужна будет, она в Popup
-// const profilePopupCloseButton = document.querySelector('.profile-form__close-button');
-// const cardCreatorCloseButton = document.querySelector('.card-creator__close-button');
-// const cardName = document.querySelector('.card-creator__name');
-// const cardLink = document.querySelector('.card-creator__link');
 const addButton = document.querySelector('.profile__addbutton');
-// ищется при создании карточек
-// const elements = document.querySelector('.elements');
-// const picture = document.querySelector('.popup_picture_opened');
-// ищем в методе open PopupWithImage
-// const pictureImage = document.querySelector('.popup__image');
-// ищем в методе open PopupWithImage
-// const pictureFigcaption = document.querySelector('.popup__figcaption');
-// const pictureCloseButton = document.querySelector('.popup__close-button_picture_close');
 
 const validationConfig = {
   formSelector: '.popup__form',
