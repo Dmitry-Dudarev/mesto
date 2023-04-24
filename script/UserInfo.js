@@ -1,14 +1,7 @@
-// Итак, этот класс будет посредником. 
-// он должен принимать данные как из попапа с 
-// данными редактора профиля,
-// так и данные из профиля. 
 export class UserInfo {
   constructor({ userNameSelector, userCareerSelector }) {
     this._userName = document.querySelector(userNameSelector);
     this._userCareer = document.querySelector(userCareerSelector);
-
-
-
     this._userData = {};
   }
 
