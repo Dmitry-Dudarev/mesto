@@ -28,4 +28,4 @@ export class PopupWithForm extends Popup {
       this._handleSubmitForm(this._data);
     })
   }
-}
+};

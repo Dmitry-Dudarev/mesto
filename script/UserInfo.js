@@ -15,4 +15,4 @@ export class UserInfo {
     this._userName.textContent = userData.profileName;
     this._userCareer.textContent = userData.profileCareer;
   }
-}
+};
