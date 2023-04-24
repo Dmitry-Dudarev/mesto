@@ -13,15 +13,3 @@ export class Section {
     this._container.prepend(element);
   }
 };
-
-
-//перенести в index
-// const cardList = new Section({
-//   items: cards,
-//   renderer(item){
-//     const card = new Card(item, '.cardTemplate', openPicture);
-//     const cardElement = card.getCardElement();
-//     cardList.addItem(cardElement);
-//   } 
-// }, '.elements');
-// cardList.renderItems()
