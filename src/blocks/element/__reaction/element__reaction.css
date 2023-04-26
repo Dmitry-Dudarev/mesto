@@ -1,0 +1,23 @@
+.element__reaction {
+  margin: 30px 19px;
+  border: 0;
+  padding: 0;
+  min-width: 22px;
+  min-height: 19px;
+  background-color: #fff;
+  background-image: url(../../../images/element__reaction_empty.svg);
+
+
+  /* background-image: url(../../../../images/element__reaction_empty.svg); */
+}
+
+.element__reaction:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+@media (max-width: 465px) {
+  .element__reaction {
+    margin: 30px 20px;
+  }
+}

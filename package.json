@@ -4,7 +4,7 @@
   "description": "*Проектная работа в рамках прохождения обучения на курсе \"Яндекс.Практикум\"*",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/Dmitry-Dudarev/mesto/issues"
   },
-  "homepage": "https://github.com/Dmitry-Dudarev/mesto#readme"
+  "homepage": "https://github.com/Dmitry-Dudarev/mesto#readme",
+  "devDependencies": {
+    "webpack": "^5.81.0",
+    "webpack-cli": "^5.0.2"
+  }
 }
