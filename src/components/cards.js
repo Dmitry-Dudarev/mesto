@@ -1,7 +1,7 @@
 export const cards = [
   {
     name: 'Волга',
-    link: 'src/images/element__volga_fedor-shlyapnikov.jpg',
+    link: 'images/element__volga_fedor-shlyapnikov.jpg',
   },
   {
     name: 'Карелия',
