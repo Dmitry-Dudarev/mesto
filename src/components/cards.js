@@ -5,7 +5,6 @@ import dombay from '../images/element__dombay_kirill-pershin.png';
 import elbrus from '../images/element__elbrus_kirill-pershin.png';
 import karachaevsk from '../images/element__karachaevsk_kirill-pershin.jpg';
 
-
 export const cards = [
   {
     name: 'Волга',
