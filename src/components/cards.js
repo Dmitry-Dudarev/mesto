@@ -1,26 +1,34 @@
+import volga from '../images/element__volga_fedor-shlyapnikov.jpg';
+import karelia from '../images/element__karelia_egor-myznik.jpg';
+import baykal from '../images/element__baykal_kir-simakov.jpg';
+import dombay from '../images/element__dombay_kirill-pershin.png';
+import elbrus from '../images/element__elbrus_kirill-pershin.png';
+import karachaevsk from '../images/element__karachaevsk_kirill-pershin.jpg';
+
+
 export const cards = [
   {
     name: 'Волга',
-    link: 'images/element__volga_fedor-shlyapnikov.jpg',
+    link: volga,
   },
   {
     name: 'Карелия',
-    link: 'src/images/element__karelia_egor-myznik.jpg',
+    link: karelia,
   },
   {
     name: 'Байкал',
-    link: 'src/images/element__baykal_kir-simakov.jpg',
+    link: baykal,
   },
   {
     name: 'Домбай',
-    link: 'src/images/element__dombay_kirill-pershin.png',
+    link: dombay,
   },
   {
     name: 'Гора Эльбрус',
-    link: 'src/images/element__elbrus_kirill-pershin.png',
+    link: elbrus,
   },
   {
     name: 'Карачаево-Черкессия',
-    link: 'src/images/element__karachaevsk_kirill-pershin.jpg',
+    link: karachaevsk,
   },
 ];
