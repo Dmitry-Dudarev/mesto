@@ -36,20 +36,20 @@ const profilePopupInputValidator = new FormValidator(validationConfig, profileFo
 profilePopupInputValidator.enableValidation();
 
 profileEditButton.addEventListener('click', () => {
-  const userData = UserInformation.getUserInfo();
+  const userData = userInformation.getUserInfo();
   userNameInput.value = userData.name;
   userCareerInput.value = userData.career;
-  PopupWithUserProfileInfo.open();
+  popupWithUserProfileInfo.open();
   profilePopupInputValidator.hideErrorMessagesAndCheckButtonState();
 });
 
 const submitPopupWithUserProfileInfo = (userData) => {
-  UserInformation.setUserInfo(userData);
-  PopupWithUserProfileInfo.close();
+  userInformation.setUserInfo(userData);
+  popupWithUserProfileInfo.close();
 };
 
 addButton.addEventListener('click', () => {
-  PopupWithCardFormInfo.open();
+  popupWithCardFormInfo.open();
   cardCreatorFormValidator.hideErrorMessagesAndCheckButtonState();
 });
 
@@ -59,15 +59,20 @@ const submitPopupWithCardFormInfo = (cardData) => {
   newCardInfo.name = cardData.cardName;
   const newCard = addNewCard([newCardInfo]);
   newCard.renderItems();
-  PopupWithCardFormInfo.close();
+  popupWithCardFormInfo.close();
+};
+
+const createCard = (item) => {
+  const card = new Card(item, '.cardTemplate', handleCardClick);
+  const cardElement = card.getCardElement();
+  return cardElement;
 };
 
 const addNewCard = (items) => {
   const newCardElement = new Section({
     items,
     renderer(item) {
-      const card = new Card(item, '.cardTemplate', handleCardClick);
-      const cardElement = card.getCardElement();
+      const cardElement = createCard(item);
       cardList.addItem(cardElement);
     }
   }, '.elements');
@@ -79,13 +84,13 @@ const handleCardClick = (data) => {
   imagePopup.open(data);
 };
 
-const PopupWithCardFormInfo = new PopupWithForm('.card-creator', submitPopupWithCardFormInfo);
-PopupWithCardFormInfo.setEventListeners();
+const popupWithCardFormInfo = new PopupWithForm('.card-creator', submitPopupWithCardFormInfo);
+popupWithCardFormInfo.setEventListeners();
 
-const PopupWithUserProfileInfo = new PopupWithForm('.profile-form', submitPopupWithUserProfileInfo);
-PopupWithUserProfileInfo.setEventListeners();
+const popupWithUserProfileInfo = new PopupWithForm('.profile-form', submitPopupWithUserProfileInfo);
+popupWithUserProfileInfo.setEventListeners();
 
-const UserInformation = new UserInfo(userInfoSelectors);
+const userInformation = new UserInfo(userInfoSelectors);
 
 const imagePopup = new PopupWithImage('.popup_picture_opened');
 imagePopup.setEventListeners();
