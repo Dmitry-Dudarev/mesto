@@ -36,15 +36,15 @@ const profilePopupInputValidator = new FormValidator(validationConfig, profileFo
 profilePopupInputValidator.enableValidation();
 
 profileEditButton.addEventListener('click', () => {
-  const userData = userInformation.getUserInfo();
-  userNameInput.value = userData.name;
-  userCareerInput.value = userData.career;
+  const newUserDataFromForm = userInformation.getUserInfo();
+  userNameInput.value = newUserDataFromForm.name;
+  userCareerInput.value = newUserDataFromForm.career;
   popupWithUserProfileInfo.open();
   profilePopupInputValidator.hideErrorMessagesAndCheckButtonState();
 });
 
-const submitPopupWithUserProfileInfo = (userData) => {
-  userInformation.setUserInfo(userData);
+const submitPopupWithUserProfileInfo = (newUserDataFromForm) => {
+  userInformation.setUserInfo(newUserDataFromForm);
   popupWithUserProfileInfo.close();
 };
 
@@ -57,8 +57,8 @@ const submitPopupWithCardFormInfo = (cardData) => {
   const newCardInfo = {};
   newCardInfo.link = cardData.cardLink;
   newCardInfo.name = cardData.cardName;
-  const newCard = addNewCard([newCardInfo]);
-  newCard.renderItems();
+  newCardElement.items = [newCardInfo];
+  newCardElement.renderItems();
   popupWithCardFormInfo.close();
 };
 
@@ -68,17 +68,13 @@ const createCard = (item) => {
   return cardElement;
 };
 
-const addNewCard = (items) => {
-  const newCardElement = new Section({
-    items,
-    renderer(item) {
-      const cardElement = createCard(item);
-      cardList.addItem(cardElement);
-    }
-  }, '.elements');
-
-  return newCardElement;
-};
+const newCardElement = new Section({
+  items: [],
+  renderer(item) {
+    const cardElement = createCard(item);
+    newCardElement.addItem(cardElement);
+  }
+}, '.elements');
 
 const handleCardClick = (data) => {
   imagePopup.open(data);
@@ -95,5 +91,5 @@ const userInformation = new UserInfo(userInfoSelectors);
 const imagePopup = new PopupWithImage('.popup_picture_opened');
 imagePopup.setEventListeners();
 
-const cardList = addNewCard(cards);
-cardList.renderItems();
+newCardElement.items = cards;
+newCardElement.renderItems();
