@@ -57,8 +57,7 @@ const submitPopupWithCardFormInfo = (cardData) => {
   const newCardInfo = {};
   newCardInfo.link = cardData.cardLink;
   newCardInfo.name = cardData.cardName;
-  newCardElement.items = [newCardInfo];
-  newCardElement.renderItems();
+  newCardElement.renderItems([newCardInfo]);
   popupWithCardFormInfo.close();
 };
 
@@ -69,7 +68,6 @@ const createCard = (item) => {
 };
 
 const newCardElement = new Section({
-  items: [],
   renderer(item) {
     const cardElement = createCard(item);
     newCardElement.addItem(cardElement);
@@ -91,5 +89,4 @@ const userInformation = new UserInfo(userInfoSelectors);
 const imagePopup = new PopupWithImage('.popup_picture_opened');
 imagePopup.setEventListeners();
 
-newCardElement.items = cards;
-newCardElement.renderItems();
+newCardElement.renderItems(cards);
