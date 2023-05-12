@@ -1,8 +1,6 @@
 import './index.css';
 
 import { API } from "../components/api.js";
-
-// import { cards } from "../components/cards.js";
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { Section } from "../components/Section.js";
@@ -18,7 +16,6 @@ const api = new API({
     'Content-Type': 'application/json'
   }
 });
-
 
 const profileEditButton = document.querySelector('.profile__editbutton');
 const cardCreatorForm = document.querySelector('.card-creator__input');
@@ -42,9 +39,6 @@ const validationConfig = {
 const userInfoSelectors = {
   userNameSelector: '.profile__username',
   userCareerSelector: '.profile__aboutuser',
-
-
-  //nuvo
   userAvatarSelector: '.profile__avatar',
 };
 
