@@ -17,11 +17,11 @@
   </header>
   <main class="content">
     <section class="profile">
-      <img class="profile__avatar" src="<%=require("./images/profile__avatar.jpg")%>" alt="аватар">
+      <img class="profile__avatar" src="/" alt="аватар">
       <div class="profile__info">
-        <h1 class="profile__username">Жак-Ив Кусто</h1>
+        <h1 class="profile__username"></h1>
         <button class="profile__editbutton" type="button"></button>
-        <p class="profile__aboutuser">Исследователь океана</p>
+        <p class="profile__aboutuser"></p>
       </div>
       <button class="profile__addbutton" type="button"></button>
     </section>
@@ -57,6 +57,15 @@
       <button class="popup__close-button card-creator__close-button" type="button"></button>
     </div>
   </div>
+  <div class="popup card-delete">
+    <div class="popup__container popup__delete-container">
+      <h3 class="popup__title popup__delete-title card-delete__title">Вы уверены?</h3>
+      <form class="popup__form popup__card-delete" method="get" novalidate>
+        <button type="submit" class="popup__save-button card-delete__delete-button">Да</button>
+      </form>
+      <button class="popup__close-button card-delete__close-button" type="button"></button>
+    </div>
+  </div>
   <div class="popup popup_picture_opened">
     <div class="popup__container popup__container_show_picture">
       <img class="popup__image" src="/" alt="Описание изображения">
@@ -72,9 +81,12 @@
       <img class="element__image" src=/ alt='Описание изображения'>
       <div class="element__bottom">
         <h2 class="element__text"></h2>
-        <button class="element__reaction" type="button"></button>
+        <div class="element__reactions">
+          <button class="element__reaction" type="button"></button>
+          <p class="element__counter">0</p>
+        </div>
       </div>
-      <button class="element__trash" type="button"></button>
+      <button class="element__trash" type="button" hidden></button>
     </article>
   </template>
 </body>
