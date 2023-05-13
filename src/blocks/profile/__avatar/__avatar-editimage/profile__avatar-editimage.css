@@ -1,0 +1,10 @@
+.profile__avatar-editimage {
+  position: absolute;
+  top: 38%;
+  left: 38%;
+  z-index: 1;
+}
+
+.profile__avatar-editimage:hover {
+  cursor: pointer;
+}

@@ -87,4 +87,17 @@ export class API {
     return serverAnswerCardLikes.json();
   }
 
+  async setNewUserAvatar(newAvatarLink) {
+    const serverAnswerNewAvatarLink = await fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: `${newAvatarLink}`
+      })
+    });
+    if(!serverAnswerNewAvatarLink.ok) {
+      return Promise.reject(`Ошибка при отправке новой ссылки на аватар на сервер: ${serverAnswerNewAvatarLink.status}`)
+    }
+    return serverAnswerNewAvatarLink.json()
+  }
 }
