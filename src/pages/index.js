@@ -21,7 +21,6 @@ const profileEditButton = document.querySelector('.profile__editbutton');
 const cardCreatorForm = document.querySelector('.card-creator__input');
 const profileForm = document.querySelector('.profile-form__input');
 const avatarForm = document.querySelector('.edit-avatar__input');
-const avatarLinkInput = document.querySelector('.edit-avatar__link');
 const userNameInput = document.querySelector('.profile-form__name');
 const userCareerInput = document.querySelector('.profile-form__career');
 const addButton = document.querySelector('.profile__addbutton');
@@ -57,14 +56,6 @@ profilePopupInputValidator.enableValidation();
 const popupWithUserProfileInfoValidator = new FormValidator(validationConfig, avatarForm);
 popupWithUserProfileInfoValidator.enableValidation();
 
-const loadingInProgress = (button, isLoading, basicWord) => {
-  if (isLoading) {
-    button.textContent = 'Сохранение...';
-  } else {
-    button.textContent = basicWord;
-  }
-};
-
 profileEditButton.addEventListener('click', () => {
   const newUserDataFromForm = userInformation.getUserInfo();
   userNameInput.value = newUserDataFromForm.name;
@@ -74,18 +65,18 @@ profileEditButton.addEventListener('click', () => {
 });
 
 async function submitPopupWithUserProfileInfo(newUserDataFromForm) {
-  loadingInProgress(profileFormSaveButton, true);
+  popupWithUserProfileInfo.popupLoadingInProgress(profileFormSaveButton, true);
   try {
     const userDataAfterPatching = await api.setInformationAboutUser(newUserDataFromForm);
     userDataAfterPatching.profileName = userDataAfterPatching.name;
     userDataAfterPatching.profileCareer = userDataAfterPatching.about;
     userInformation.setUserInfo(userDataAfterPatching);
+    popupWithUserProfileInfo.close();
   } catch (err) {
     console.error(`Ошибка при редактировании данных пользователя: ${err}`)
   } finally {
-    loadingInProgress(profileFormSaveButton, false, 'Сохранить')
-  }
-  popupWithUserProfileInfo.close();
+    popupWithUserProfileInfo.popupLoadingInProgress(profileFormSaveButton, false, 'Сохранить')
+  };
 };
 
 addButton.addEventListener('click', () => {
@@ -94,55 +85,54 @@ addButton.addEventListener('click', () => {
 });
 
 async function submitPopupWithCardFormInfo(cardData) {
-  loadingInProgress(cardFormSaveButton, true);
+  popupWithCardFormInfo.popupLoadingInProgress(cardFormSaveButton, true);
   try {
     const newCardInfo = await api.createNewCardForServer(cardData);
     newCardElement.renderItems([newCardInfo]);
+    popupWithCardFormInfo.close();
   } catch (err) {
     console.error(`Ошибка при рендеринге новой карточки: ${err}`)
   } finally {
-    loadingInProgress(cardFormSaveButton, false, 'Создать')
-  }
-  popupWithCardFormInfo.close();
+    popupWithCardFormInfo.popupLoadingInProgress(cardFormSaveButton, false, 'Создать')
+  };
 };
 
 avatarEditButton.addEventListener('click', () => {
-  avatarLinkInput.value = userInformation.getUserAvatar();
   popupWithUserAvatarInfo.open();
   popupWithUserProfileInfoValidator.hideErrorMessagesAndCheckButtonState();
 });
 
 async function submitPopupWithUserAvatarInfo(link) {
-  loadingInProgress(avatarFormSaveButton, true);
+  popupWithUserAvatarInfo.popupLoadingInProgress(avatarFormSaveButton, true);
   try {
     const newAvatarLink = await api.setNewUserAvatar(link.avatarLink);
     userInformation.setUserAvatar(newAvatarLink);
+    popupWithUserAvatarInfo.close();
   } catch (err) {
     console.error(`Ошибка при обновлении аватара: ${err}`)
   } finally {
-    loadingInProgress(avatarFormSaveButton, false, 'Сохранить')
-  }
-  popupWithUserAvatarInfo.close();
+    popupWithUserAvatarInfo.popupLoadingInProgress(avatarFormSaveButton, false, 'Сохранить')
+  };
 };
 
-const handleDeletePopupClick = (data) => {
-  popupConfirmationDelete.open(data);
+const handleDeletePopupClick = (data, card, cardElement) => {
+  popupConfirmationDelete.open(data, card, cardElement);
 };
 
-async function submitPopupConfirmationDelete(cardId) {
+async function submitPopupConfirmationDelete(cardId, card, cardElement) {
   try {
     const isCardDeletedFromServer = await api.deleteCardById(cardId);
     if (isCardDeletedFromServer) {
-      document.getElementById(cardId).remove();
+      card.deleteCard(cardElement);
+      popupConfirmationDelete.close();
     }
   } catch (err) {
     console.error(`Ошибка при удалении карточки: ${err}`)
   };
-  popupConfirmationDelete.close();
 };
 
 const createCard = (item) => {
-  const card = new Card(item, '.cardTemplate', handleCardClick, handleDeletePopupClick, getServerAnswerCardLikes, userId);
+  const card = new Card(item, '.cardTemplate', handleCardClick, handleDeletePopupClick, getServerAnswerCardLikes, handleLikeClick, userId);
   const cardElement = card.getCardElement();
   return cardElement;
 };
@@ -175,32 +165,6 @@ const userInformation = new UserInfo(userInfoSelectors);
 const imagePopup = new PopupWithImage('.popup_picture_opened');
 imagePopup.setEventListeners();
 
-async function renderInitialCards() {
-  try {
-    const cards = await api.getInitialCards();
-    newCardElement.renderItems(cards);
-  } catch (err) {
-    console.error(`При загрузке исходных карточек произошла ошибка: ${err}`)
-  };
-};
-
-async function getInfoAboutUserFromServer() {
-  try {
-    const informationAboutUser = await api.getInformationAboutUser();
-    informationAboutUser.profileName = informationAboutUser.name;
-    informationAboutUser.profileCareer = informationAboutUser.about;
-    return informationAboutUser
-  } catch (err) {
-    console.error(`При загрузке данных пользователя произошла ошибка: ${err}`);
-  };
-};
-
-async function renderUserInformation() {
-  const userData = await getInfoAboutUserFromServer();
-  userInformation.setUserInfo(userData);
-  userInformation.setUserAvatar(userData);
-};
-
 async function getServerAnswerCardLikes(cardId, typeOfMethod) {
   try {
     const serverAnswerCardLikes = await api.changeCardLikes(cardId, typeOfMethod);
@@ -210,15 +174,41 @@ async function getServerAnswerCardLikes(cardId, typeOfMethod) {
   };
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderUserInformation();
-});
+const renderInitialCards = (cards) => {
+  newCardElement.renderItems(cards);
+};
 
-(async () => {
+const renderUserInformation = (userData) => {
+  userInformation.setUserInfo(userData);
+  userInformation.setUserAvatar(userData);
+};
+
+async function handleLikeClick(card, hasUserLike, cardElement) {
   try {
-    userId = await api.getUserId()
+    const cardId = card.getId();
+    let newCardData = {};
+    if (hasUserLike) {
+      newCardData = await this._getServerAnswerCardLikes(cardId, 'DELETE');
+    } else {
+      newCardData = await this._getServerAnswerCardLikes(cardId, 'PUT');
+    };
+    card.renderNewLikes(newCardData, cardElement)
   } catch (err) {
-    console.error(`При пролучении id рользователя произошла ошибка ${err}`)
+    console.error(`Ошибка при обновлении информации о лайках: ${err}`)
   };
-  renderInitialCards(userId);
-})();
+};
+
+Promise.all([
+  api.getInformationAboutUser(),
+  api.getInitialCards()
+])
+  .then(([informationAboutUser, initialCards]) => {
+    informationAboutUser.profileName = informationAboutUser.name;
+    informationAboutUser.profileCareer = informationAboutUser.about;
+    userId = informationAboutUser._id;
+    renderUserInformation(informationAboutUser);
+    renderInitialCards(initialCards);
+  })
+  .catch((err) => {
+    console.error(`При загрузке исходных данных произошла ошибка: ${err}`)
+  });

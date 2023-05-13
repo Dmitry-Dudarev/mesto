@@ -4,7 +4,6 @@ export class API {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
-    this.userId = '';
   }
 
   async getInitialCards() {
@@ -12,10 +11,8 @@ export class API {
       {
         headers: this._headers
       });
-    if (!initialCardsServerAnswer.ok) {
-      return Promise.reject(`Ошибка при загрузке массива карточек с сервера: ${initialCardsServerAnswer.status}`)
-    };
-    return initialCardsServerAnswer.json();
+    return this._checkResponseData(initialCardsServerAnswer,
+      'Ошибка при загрузке массива карточек с сервера')
   }
 
   async getInformationAboutUser() {
@@ -23,16 +20,8 @@ export class API {
       {
         headers: this._headers
       });
-    if (!informationAboutUserServerAnswer.ok) {
-      return Promise.reject(`Ошибка при загрузке данных пользователя с сервера: ${informationAboutUserServerAnswer.status}`)
-    };
-    return informationAboutUserServerAnswer.json();
-  }
-
-  async getUserId() {
-    const userData = await this.getInformationAboutUser();
-    this.userId = userData._id;
-    return this.userId;
+    return this._checkResponseData(informationAboutUserServerAnswer,
+      'Ошибка при загрузке данных пользователя с сервера')
   }
 
   async setInformationAboutUser(newUserDataFromForm) {
@@ -44,10 +33,8 @@ export class API {
         about: `${newUserDataFromForm.profileCareer}`
       })
     });
-    if (!patchInformationAboutUser.ok) {
-      return Promise.reject(`Ошибка при обновлении данных пользователя на сервере: ${patchInformationAboutUser.status}`)
-    }
-    return patchInformationAboutUser.json();
+    return this._checkResponseData(patchInformationAboutUser,
+      'Ошибка при обновлении данных пользователя на сервере')
   }
 
   async createNewCardForServer(newCardData) {
@@ -59,10 +46,8 @@ export class API {
         link: `${newCardData.cardLink}`
       })
     });
-    if (!newCardForServer.ok) {
-      return Promise.reject(`Ошибка при передаче данных карточки на сервер: ${newCardForServer.status}`)
-    }
-    return newCardForServer.json();
+    return this._checkResponseData(newCardForServer,
+      'Ошибка при передаче данных карточки на сервер')
   }
 
   async deleteCardById(cardId) {
@@ -81,10 +66,8 @@ export class API {
       method: typeOfMethod,
       headers: this._headers
     });
-    if (!serverAnswerCardLikes.ok) {
-      return Promise.reject(`Ошибка при отправке информации о лайке на сервер: ${serverAnswerCardLikes.status}`)
-    }
-    return serverAnswerCardLikes.json();
+    return this._checkResponseData(serverAnswerCardLikes,
+      'Ошибка при отправке информации о лайке на сервер')
   }
 
   async setNewUserAvatar(newAvatarLink) {
@@ -95,9 +78,14 @@ export class API {
         avatar: `${newAvatarLink}`
       })
     });
-    if(!serverAnswerNewAvatarLink.ok) {
-      return Promise.reject(`Ошибка при отправке новой ссылки на аватар на сервер: ${serverAnswerNewAvatarLink.status}`)
+    return this._checkResponseData(serverAnswerNewAvatarLink,
+      'Ошибка при отправке новой ссылки на аватар на сервер')
+  }
+
+  _checkResponseData(responseData, misstakeMessage) {
+    if (!responseData) {
+      return Promise.reject(`${misstakeMessage}: ${responseData.status}`)
     }
-    return serverAnswerNewAvatarLink.json()
+    return responseData.json()
   }
 }

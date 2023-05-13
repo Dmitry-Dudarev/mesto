@@ -27,4 +27,12 @@ export class PopupWithForm extends Popup {
       this._handleSubmitForm(this._getInputValues());
     })
   }
+
+  popupLoadingInProgress(button, isLoading, basicWord) {
+    if (isLoading) {
+      button.textContent = 'Сохранение...';
+    } else {
+      button.textContent = basicWord;
+    }
+  }
 };

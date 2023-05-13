@@ -1,5 +1,5 @@
 export class Card {
-  constructor(data, cardTemplateSelector, handleCardClick, handleDeletePopupClick, getServerAnswerCardLikes, userId) {
+  constructor(data, cardTemplateSelector, handleCardClick, handleDeletePopupClick, getServerAnswerCardLikes, handleLikeClick, userId) {
     this._cardTemplateSelector = cardTemplateSelector;
     this._cardName = data.name;
     this._cardLink = data.link;
@@ -9,6 +9,7 @@ export class Card {
     this._cardId = data._id;
     this._data = data;
     this._getServerAnswerCardLikes = getServerAnswerCardLikes;
+    this._handleLikeClick = handleLikeClick;
   }
 
   getCardElement() {
@@ -17,7 +18,6 @@ export class Card {
     this._cardElementImage.src = this._cardLink;
     this._cardElementImage.alt = this._cardName;
     this._cardElement.querySelector('.element__text').textContent = this._cardName;
-    this._cardElement.querySelector('.element').id = this._cardId;
     this._checkOwner();
     this._setEventListeners(this._cardElement, this._cardElementImage);
     this._showLikes(this._cardElement);
@@ -50,11 +50,11 @@ export class Card {
 
   _setEventListeners(cardElement, cardElementImage) {
     cardElement.querySelector('.element__trash').addEventListener('click', (evt) => {
-      this._confirmCardDeletion();
+      this._confirmCardDeletion(evt.target.closest('.element'));
     });
 
     cardElement.querySelector('.element__reaction').addEventListener('click', (evt) => {
-      this._handleLikeClick(this._cardId, evt.target.closest('.element'));
+      this._clickOnReactionElement(evt.target.closest('.element'));
     });
 
     cardElementImage.addEventListener('click', () => {
@@ -62,8 +62,16 @@ export class Card {
     });
   }
 
-  _confirmCardDeletion() {
-    this._handleDeletePopupClick(this._cardId);
+  _confirmCardDeletion(card) {
+    this._handleDeletePopupClick(this._cardId, this, card);
+  }
+
+  deleteCard(cardElement) {
+    cardElement.remove();
+  }
+
+  getId() {
+    return this._cardId
   }
 
   _showLikes(card) {
@@ -91,25 +99,13 @@ export class Card {
     }
   }
 
-  async _handleLikeClick(cardId, card) {
-    if (this._checkUserLike()) {
-      this._data = await this._removeUserLike(cardId);
-      this._showLikes(card);
-    } else {
-      this._data = await this._addUserLike(cardId);
-      this._showLikes(card);
-    }
+  _clickOnReactionElement(cardElement) {
+    const hasUserLike = this._checkUserLike();
+    this._handleLikeClick(this, hasUserLike, cardElement);
   }
 
-  async _addUserLike(cardId) {
-    const typeOfMethod = 'PUT';
-    const serverAnswerCardLikes = await this._getServerAnswerCardLikes(cardId, typeOfMethod);
-    return serverAnswerCardLikes;
-  }
-
-  async _removeUserLike(cardId) {
-    const typeOfMethod = 'DELETE';
-    const serverAnswerCardLikes = await this._getServerAnswerCardLikes(cardId, typeOfMethod);
-    return serverAnswerCardLikes;
+  renderNewLikes(newCardData, card) {
+    this._data = newCardData
+    this._showLikes(card);
   }
 };
