@@ -115,15 +115,15 @@ async function submitPopupWithUserAvatarInfo(link) {
   };
 };
 
-const handleDeletePopupClick = (data, card, cardElement) => {
-  popupConfirmationDelete.open(data, card, cardElement);
+const handleDeletePopupClick = (data, card) => {
+  popupConfirmationDelete.open(data, card);
 };
 
-async function submitPopupConfirmationDelete(cardId, card, cardElement) {
+async function submitPopupConfirmationDelete(cardId, card) {
   try {
     const isCardDeletedFromServer = await api.deleteCardById(cardId);
-    if (isCardDeletedFromServer) {
-      card.deleteCard(cardElement);
+    if (isCardDeletedFromServer.message === "Пост удалён") {
+      card.removeCard();
       popupConfirmationDelete.close();
     }
   } catch (err) {
@@ -132,7 +132,7 @@ async function submitPopupConfirmationDelete(cardId, card, cardElement) {
 };
 
 const createCard = (item) => {
-  const card = new Card(item, '.cardTemplate', handleCardClick, handleDeletePopupClick, getServerAnswerCardLikes, handleLikeClick, userId);
+  const card = new Card(item, '.cardTemplate', handleCardClick, handleDeletePopupClick, getServerAnswerCardLikes, handleLikeClick, userId, handleDeleteCard);
   const cardElement = card.getCardElement();
   return cardElement;
 };
@@ -183,7 +183,7 @@ const renderUserInformation = (userData) => {
   userInformation.setUserAvatar(userData);
 };
 
-async function handleLikeClick(card, hasUserLike, cardElement) {
+async function handleLikeClick(card, hasUserLike) {
   try {
     const cardId = card.getId();
     let newCardData = {};
@@ -192,7 +192,7 @@ async function handleLikeClick(card, hasUserLike, cardElement) {
     } else {
       newCardData = await this._getServerAnswerCardLikes(cardId, 'PUT');
     };
-    card.renderNewLikes(newCardData, cardElement)
+    card.renderNewLikes(newCardData)
   } catch (err) {
     console.error(`Ошибка при обновлении информации о лайках: ${err}`)
   };
@@ -212,3 +212,7 @@ Promise.all([
   .catch((err) => {
     console.error(`При загрузке исходных данных произошла ошибка: ${err}`)
   });
+
+  function handleDeleteCard (card) {
+    card.deleteCard()
+  }

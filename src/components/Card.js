@@ -1,5 +1,6 @@
 export class Card {
-  constructor(data, cardTemplateSelector, handleCardClick, handleDeletePopupClick, getServerAnswerCardLikes, handleLikeClick, userId) {
+  constructor(data, cardTemplateSelector, handleCardClick, handleDeletePopupClick, getServerAnswerCardLikes, handleLikeClick, userId, handleDeleteCard) {
+    this._handleDeleteCard = handleDeleteCard;
     this._cardTemplateSelector = cardTemplateSelector;
     this._cardName = data.name;
     this._cardLink = data.link;
@@ -44,17 +45,18 @@ export class Card {
     const cardTemplate = document
       .querySelector(this._cardTemplateSelector)
       .content
-      .cloneNode(true);
+      .querySelector('.element')
+      .cloneNode(true)
     return cardTemplate;
   }
 
   _setEventListeners(cardElement, cardElementImage) {
     cardElement.querySelector('.element__trash').addEventListener('click', (evt) => {
-      this._confirmCardDeletion(evt.target.closest('.element'));
+      this._confirmCardDeletion();
     });
 
     cardElement.querySelector('.element__reaction').addEventListener('click', (evt) => {
-      this._clickOnReactionElement(evt.target.closest('.element'));
+      this._clickOnReactionElement();
     });
 
     cardElementImage.addEventListener('click', () => {
@@ -62,22 +64,22 @@ export class Card {
     });
   }
 
-  _confirmCardDeletion(card) {
-    this._handleDeletePopupClick(this._cardId, this, card);
+  _confirmCardDeletion() {
+    this._handleDeletePopupClick(this._cardId, this);
   }
 
-  deleteCard(cardElement) {
-    cardElement.remove();
+  removeCard() {
+    this._cardElement.remove();
   }
 
   getId() {
     return this._cardId
   }
 
-  _showLikes(card) {
+  _showLikes() {
     const likesNumber = this._checkLikesNumber();
     const hasUserLike = this._checkUserLike();
-    this._renderLikes(likesNumber, hasUserLike, card);
+    this._renderLikes(likesNumber, hasUserLike);
   }
 
   _checkLikesNumber() {
@@ -90,12 +92,12 @@ export class Card {
     });
   }
 
-  _renderLikes(likesNumber, hasUserLike, cardElement) {
-    cardElement.querySelector('.element__counter').textContent = likesNumber;
+  _renderLikes(likesNumber, hasUserLike) {
+    this._cardElement.querySelector('.element__counter').textContent = likesNumber;
     if (hasUserLike) {
-      cardElement.querySelector('.element__reaction').classList.add('element__reaction_like');
+      this._cardElement.querySelector('.element__reaction').classList.add('element__reaction_like');
     } else {
-      cardElement.querySelector('.element__reaction').classList.remove('element__reaction_like');
+      this._cardElement.querySelector('.element__reaction').classList.remove('element__reaction_like');
     }
   }
 
@@ -104,8 +106,8 @@ export class Card {
     this._handleLikeClick(this, hasUserLike, cardElement);
   }
 
-  renderNewLikes(newCardData, card) {
+  renderNewLikes(newCardData) {
     this._data = newCardData
-    this._showLikes(card);
+    this._showLikes();
   }
 };

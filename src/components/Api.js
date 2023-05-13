@@ -55,10 +55,8 @@ export class API {
       method: 'DELETE',
       headers: this._headers
     });
-    if (!deleteCardServerAnswer.ok) {
-      return Promise.reject(`Ошибка при отправке на сервер запроса об удалении карточки: ${deleteCardServerAnswer.status}`)
-    }
-    return deleteCardServerAnswer.ok;
+    return this._checkResponseData(deleteCardServerAnswer,
+      'Ошибка при отправке на сервер запроса об удалении карточки')
   }
 
   async changeCardLikes(cardId, typeOfMethod) {
@@ -83,9 +81,9 @@ export class API {
   }
 
   _checkResponseData(responseData, misstakeMessage) {
-    if (!responseData) {
+    if (!responseData.ok) {
       return Promise.reject(`${misstakeMessage}: ${responseData.status}`)
     }
     return responseData.json()
   }
-}
+};
